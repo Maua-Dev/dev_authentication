@@ -86,7 +86,7 @@ Resources:
       AliasTarget:
         DNSName: !GetAtt CloudfrontDistribution.DomainName
         HostedZoneId: 'Z2FDTNDATAQYW2'
-      Name: !Sub AlternateDomainName
+      Name: !Ref AlternateDomainName
       Type: 'A'
       HostedZoneId: !Ref HostedZoneId
 Outputs:
