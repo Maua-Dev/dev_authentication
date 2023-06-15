@@ -84,8 +84,8 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties: 
       AliasTarget:
-        DNSName: !Ref AlternateDomainName
-        HostedZoneId: !Ref CloudfrontDistribution
+        DNSName: !GetAtt CloudfrontDistribution.DomainName
+        HostedZoneId: 'Z2FDTNDATAQYW2'
       Name: !Sub AlternateDomainName
       Type: 'A'
       HostedZoneId: !Ref HostedZoneId
