@@ -54,7 +54,7 @@ jobs:
               ref: ${{ github.ref_name }}
            run: |
             sam build --template-file samtemplate.yml --use-container
-            sam deploy --no-fail-on-empty-changeset --template-file samtemplate.yml --stack-name ${{env.STACK_NAME}} --region ${{ vars.AWS_S3_BUCKET_REGION }}  --parameter-overrides "ParameterKey=BucketName,ParameterValue=dev-auth-web-${{github.ref_name}} ParameterKey=AcmCertificateArn,ParameterValue=${{secrets.ACM_CERTIFICATE_ARN}} ParameterKey=AlternateDomainName,ParameterValue=${{vars.ALTERNATIVE_DOMAIN_NAME}}" --tags "project=DevAuth" "stack=FRONT" "stage=${ref^^}" "owner=DevCommunity"
+            sam deploy --no-fail-on-empty-changeset --template-file samtemplate.yml --stack-name ${{env.STACK_NAME}} --region ${{ vars.AWS_S3_BUCKET_REGION }}  --parameter-overrides "ParameterKey=HostedZoneId,ParameterValue=${{secrets.HOSTED_ZONE_ID}} ParameterKey=BucketName,ParameterValue=dev-auth-web-${{github.ref_name}} ParameterKey=AcmCertificateArn,ParameterValue=${{secrets.ACM_CERTIFICATE_ARN}} ParameterKey=AlternateDomainName,ParameterValue=${{vars.ALTERNATIVE_DOMAIN_NAME}}" --tags "project=DevAuth" "stack=FRONT" "stage=${ref^^}" "owner=DevCommunity"
          
          - name: Set CloudFront ID
            run: |
