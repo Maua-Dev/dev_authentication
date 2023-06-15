@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  SMILE 2023 Frontend
+  Authentication Dev Frontend
 Parameters:
   BucketName:
     Type: String
@@ -13,11 +13,15 @@ Parameters:
     Type: String
     Description: Alternate domain name to use for the CloudFront distribution
 Resources:
-  CloudFrontOriginAccessIdentity:
-    Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
+  CloudFrontOriginAccessControl:
+    Type: 'AWS::CloudFront::OriginAccessControl'
     Properties:
-      CloudFrontOriginAccessIdentityConfig:
-        Comment: 'Smile 2023 Front OA'
+      OriginAccessControlConfig:
+        Description: !Sub '${BucketName} OAC'
+        Name: !Sub '${BucketName} OAC'
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
   MyBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -43,9 +47,7 @@ Resources:
         Origins:
           - Id: !Ref MyBucket
             DomainName: !GetAtt MyBucket.DomainName
-            S3OriginConfig:
-              OriginAccessIdentity: 
-                Fn::Sub: 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}'
+            OriginAccessControlId: !Ref CloudFrontOriginAccessControl
         Enabled: true
         DefaultCacheBehavior:
           AllowedMethods:
@@ -63,12 +65,16 @@ Resources:
       Bucket: !Ref MyBucket
       PolicyDocument:
         Statement:
+            Sid: 'AllowCloudFrontServicePrincipal'
             Effect: Allow
             Action: 's3:GetObject'
             Resource:
               - !Sub "arn:aws:s3:::${MyBucket}/*"
             Principal:
-              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
+              Service: "cloudfront.amazonaws.com"
+            Condition:
+              StringEquals:
+                'AWS:SourceArn': "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudfrontDistribution}"
 Outputs:
   AwsBucket:
     Value: !Ref MyBucket
