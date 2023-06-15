@@ -1,0 +1,70 @@
+# This is a basic workflow to help you get started with Actions
+name: CD_AWS_S3
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the develop branch
+  push:
+    paths:
+      - 'pubspec.yaml'
+    branches: [ dev, prod ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build_WEB:
+      if: contains(github.event.head_commit.message, 'bump version')
+      name: Build Flutter (WEB)
+      runs-on: ubuntu-latest
+      environment: ${{ github.ref_name == 'dev' && 'develop' || github.ref_name }}
+      permissions:
+        id-token: write
+        contents: write
+      steps:
+         - name: Checkout code
+           uses: actions/checkout@v2
+         - name: Setup Java Version
+           uses: actions/setup-java@v1
+           with:
+             java-version: "12.x"
+         - name: Setup Flutter Version
+           uses: subosito/flutter-action@v1
+           with:
+             channel: "stable"
+         - name: Get flutter dependencies
+           run: flutter pub get
+
+         - name: Setup AWS Credentials
+           uses: aws-actions/configure-aws-credentials@v1
+           with:
+             aws-region: us-east-1
+             role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+             role-session-name: github-action
+
+         - run: flutter build web --release
+
+         - name: Setup SAM
+           uses: aws-actions/setup-sam@v2
+
+         - name: Set Stack Name
+           run: |
+            echo "STACK_NAME='DevAuthWebSamStack${{github.ref_name}}'" >> $GITHUB_ENV
+
+         - name: Build SAM
+           env:
+              ref: ${{ github.ref_name }}
+           run: |
+            sam build --template-file samtemplate.yml --use-container
+            sam deploy --no-fail-on-empty-changeset --template-file samtemplate.yml --stack-name ${{env.STACK_NAME}} --region ${{ vars.AWS_S3_BUCKET_REGION }}  --parameter-overrides "ParameterKey=BucketName,ParameterValue=dev-auth-web-${{github.ref_name}} ParameterKey=AcmCertificateArn,ParameterValue=${{secrets.ACM_CERTIFICATE_ARN}} ParameterKey=AlternateDomainName,ParameterValue=${{vars.ALTERNATIVE_DOMAIN_NAME}}" --tags "project=DevAuth" "stack=FRONT" "stage=${ref^^}" "owner=DevCommunity"
+         
+         - name: Set CloudFront ID
+           run: |
+            CLOUD_FRONT_ID=$(aws cloudformation --region ${{vars.AWS_S3_BUCKET_REGION}} describe-stacks --stack-name ${{env.STACK_NAME}} --query "Stacks[0].Outputs[?OutputKey=='CloudfrontId'].OutputValue" --output text)
+            echo "CLOUD_FRONT_ID='$CLOUD_FRONT_ID'" >> $GITHUB_ENV
+         - name: Set AWS Bucket
+           run: |
+            AWS_BUCKET=$(aws cloudformation --region ${{vars.AWS_S3_BUCKET_REGION}} describe-stacks --stack-name ${{env.STACK_NAME}} --query "Stacks[0].Outputs[?OutputKey=='AwsBucket'].OutputValue" --output text)
+            echo "AWS_BUCKET='$AWS_BUCKET'" >> $GITHUB_ENV
+         - name: Upload to S3
+           run: aws s3 cp build/web s3://${{env.AWS_BUCKET}}/ --recursive --region ${{ vars.AWS_S3_BUCKET_REGION }}
+         - name: Clear CDN cache
+           run: aws cloudfront create-invalidation --distribution-id ${{env.CLOUD_FRONT_ID}} --paths "/*" --region us-east-1
