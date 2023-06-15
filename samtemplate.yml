@@ -47,6 +47,8 @@ Resources:
         Origins:
           - Id: !Ref MyBucket
             DomainName: !GetAtt MyBucket.DomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ''
             OriginAccessControlId: !Ref CloudFrontOriginAccessControl
         Enabled: true
         DefaultCacheBehavior:
@@ -75,6 +77,15 @@ Resources:
             Condition:
               StringEquals:
                 'AWS:SourceArn': "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudfrontDistribution}"
+  RecordRoute53:
+    Type: AWS::Route53::RecordSet
+    Properties: 
+      AliasTarget:
+        DNSName: !Ref AlternateDomainName
+        HostedZoneId: !Ref CloudfrontDistribution
+      Name: !Sub AlternateDomainName
+      Type: 'A'
+      HostedZoneName: 'devmaua.com'
 Outputs:
   AwsBucket:
     Value: !Ref MyBucket
