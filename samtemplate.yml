@@ -83,7 +83,7 @@ Resources:
       AliasTarget:
         DNSName: !Ref AlternateDomainName
         HostedZoneId: !Ref CloudfrontDistribution
-      Name: String
+      Name: !Sub AlternateDomainName
       Type: 'A'
       HostedZoneName: 'devmaua.com'
 Outputs:
