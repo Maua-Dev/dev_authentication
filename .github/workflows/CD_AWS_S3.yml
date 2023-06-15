@@ -15,7 +15,7 @@ jobs:
       if: contains(github.event.head_commit.message, 'bump version')
       name: Build Flutter (WEB)
       runs-on: ubuntu-latest
-      environment: ${{ github.ref_name == 'dev' && 'develop' || github.ref_name }}
+      environment: ${{ github.ref_name }}
       permissions:
         id-token: write
         contents: write
