@@ -12,6 +12,9 @@ Parameters:
   AlternateDomainName:
     Type: String
     Description: Alternate domain name to use for the CloudFront distribution
+  HostedZoneId:
+    Type: String
+    Description: Hosted zone Id to use in record route 53
 Resources:
   CloudFrontOriginAccessControl:
     Type: 'AWS::CloudFront::OriginAccessControl'
@@ -85,7 +88,7 @@ Resources:
         HostedZoneId: !Ref CloudfrontDistribution
       Name: !Sub AlternateDomainName
       Type: 'A'
-      HostedZoneName: 'devmaua.com'
+      HostedZoneId: !Sub HostedZoneId
 Outputs:
   AwsBucket:
     Value: !Ref MyBucket
