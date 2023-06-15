@@ -88,7 +88,7 @@ Resources:
         HostedZoneId: !Ref CloudfrontDistribution
       Name: !Sub AlternateDomainName
       Type: 'A'
-      HostedZoneId: !Sub HostedZoneId
+      HostedZoneId: !Ref HostedZoneId
 Outputs:
   AwsBucket:
     Value: !Ref MyBucket
