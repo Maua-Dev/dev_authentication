@@ -1,0 +1,17 @@
+{
+    "buttonLogin": "Sign In as",
+    "buttonLoginDiffUser": "Sign in as a different user?",
+    "hintPassword": "Password",
+    "textForgotPassword": "Forgot password?",
+    "textRegister": "Register",
+    
+    "textErrorHome": "An error was found in the parameters, following parameters are required: ",
+    "textSubErrorHome": "{textSubErrorHome} ",
+    "@textSubErrorHome": {
+        "placeholders": {
+            "placeholders": {
+                "textSubErrorHome": {}
+            }
+        }
+    }
+}

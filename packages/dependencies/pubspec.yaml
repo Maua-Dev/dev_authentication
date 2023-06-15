@@ -1,0 +1,28 @@
+name: dependencies
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_modular: ^5.0.3
+  logger: ^1.4.0
+  flutter_mobx: ^2.0.6+5
+  mobx: ^2.2.0
+  string_validator: ^1.0.0
+  fluttertoast: ^8.2.2
+  dartz: ^0.10.1
+  intl: ^0.18.0
+  cached_network_image: ^3.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

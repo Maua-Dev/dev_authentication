@@ -1,0 +1,17 @@
+{
+    "buttonLogin": "Entrar como",
+    "buttonLoginDiffUser": "Entrar com um usuário diferente?",
+    "hintPassword": "Senha",
+    "textForgotPassword": "Esqueceu sua senha?",
+    "textRegister": "Criar Conta",
+
+    "textErrorHome": "Foi encontrado um erro nos parametros, seguintes parâmetros são necessários: ",
+    "textSubErrorHome": "{textSubErrorHome}",
+    "@textSubErrorHome": {
+        "placeholders": {
+            "placeholders": {
+                "textSubErrorHome": {}
+            }
+        }
+    }
+}

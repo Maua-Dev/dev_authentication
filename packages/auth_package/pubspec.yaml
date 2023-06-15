@@ -1,0 +1,33 @@
+name: auth_package
+description: Flutter package Login to Dev Community
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  dependencies:
+    path: ../dependencies
+  amplify_auth_cognito: ^1.1.1
+  amplify_flutter: ^1.1.1
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.4.5
+  mobx_codegen: ^2.3.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  assets:
+    - assets/

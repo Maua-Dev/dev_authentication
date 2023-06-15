@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-login-dev-181120-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264055331071:role/amplify-login-dev-181120-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264055331071:role/amplify-login-dev-181120-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-login-dev-181120-deployment",
+      "UnauthRoleName": "amplify-login-dev-181120-unauthRole",
+      "StackName": "amplify-login-dev-181120",
+      "StackId": "arn:aws:cloudformation:sa-east-1:264055331071:stack/amplify-login-dev-181120/83c7e4e0-089c-11ee-92aa-0a2364e52614",
+      "AmplifyAppId": "d1e6grk8na3kh9"
+    },
+    "categories": {
+      "auth": {
+        "loginc9df2a4f": {
+          "userPoolId": "sa-east-1_y54N4rLNi",
+          "userPoolName": "CognitoStackauthdevuserpool0E5939A2-8zZtA4gu2FIn",
+          "webClientId": "41i1bq4qnrojfbep6q0cejbvlv",
+          "nativeClientId": "41i1bq4qnrojfbep6q0cejbvlv"
+        }
+      }
+    }
+  }
+}
