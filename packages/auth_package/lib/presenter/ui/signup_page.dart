@@ -64,6 +64,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   prefixIcon: const Icon(Icons.key_outlined),
                 ),
                 const SizedBox(height: 16),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Text('Is Mauá?'),
+                    Switch(
+                      activeColor: Colors.red,
+                      inactiveTrackColor: Colors.grey,
+                      value: store.isMaua,
+                      onChanged: store.setIsMaua,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
                 ElevatedButton(
                     onPressed: () async {
                       await store.signUp();
