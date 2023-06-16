@@ -7,4 +7,12 @@ abstract class LoginRepository {
       {required String email, required String password});
   Future<Either<Failure, Unit>> logout();
   Future<Either<Failure, LoggedUserInfo>> getLoggedUser();
+  Future<Either<Failure, Unit>> signUpEmail(
+      {required String email,
+      required String password,
+      required String name,
+      required bool isMaua});
+  Future<Either<Failure, Unit>> confirmSignUp(
+      {required String email, required String code});
+  Future<Either<Failure, Unit>> resendConfirmationCode({required String email});
 }

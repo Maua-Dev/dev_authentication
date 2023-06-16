@@ -5,5 +5,6 @@ class UserDto extends LoggedUserInfo {
       {required super.email,
       required super.username,
       required super.sub,
-      required super.accessToken});
+      required super.accessToken,
+      required super.emailVerified});
 }

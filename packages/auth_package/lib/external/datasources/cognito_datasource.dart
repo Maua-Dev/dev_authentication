@@ -1,5 +1,6 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:auth_package/domain/errors/errors.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 import 'package:auth_package/infra/dtos/user_dto.dart';
@@ -17,14 +18,22 @@ class CognitoDatasource implements LoginDatasource {
       username: email,
       password: password,
     );
+    if (result.nextStep.signInStep == AuthSignInStep.confirmSignUp) {
+      throw ErrorEmailNotVerified('Email not verified');
+    } else if (result.nextStep.signInStep == AuthSignInStep.resetPassword) {
+      throw ErrorPasswordNotReset('Reset password');
+    }
     logger.d('[CognitoDatasource] loginEmail: ${result.toJson()}}');
     final cognitoPlugin = Amplify.Auth.getPlugin(AmplifyAuthCognito.pluginKey);
     final session = await cognitoPlugin.fetchAuthSession();
+
     return UserDto(
         email: email,
         username: session.userPoolTokensResult.value.username,
         sub: session.userSubResult.value,
-        accessToken: session.userPoolTokensResult.value.accessToken.raw);
+        accessToken: session.userPoolTokensResult.value.accessToken.raw,
+        emailVerified:
+            session.userPoolTokensResult.value.idToken.emailVerified ?? false);
   }
 
   @override
@@ -48,14 +57,49 @@ class CognitoDatasource implements LoginDatasource {
       if (!session.isSignedIn) {
         return null;
       }
+      logger.d('token: ${session.userPoolTokensResult.value.idToken}');
       return UserDto(
           email: session.userPoolTokensResult.value.idToken.email!,
           username: session.userPoolTokensResult.value.username,
           sub: session.userSubResult.value,
-          accessToken: session.userPoolTokensResult.value.accessToken.raw);
+          accessToken: session.userPoolTokensResult.value.accessToken.raw,
+          emailVerified:
+              session.userPoolTokensResult.value.idToken.emailVerified ??
+                  false);
     } on AuthException catch (e) {
       logger.d('Error retrieving auth session: ${e.message}');
       throw Exception();
     }
+  }
+
+  @override
+  Future<void> signUpEmail(
+      {required String email,
+      required String password,
+      required String name,
+      required bool isMaua}) async {
+    final userAttributes = {
+      AuthUserAttributeKey.email: email,
+      AuthUserAttributeKey.name: name,
+      const CognitoUserAttributeKey.custom('isMaua'): isMaua.toString()
+    };
+    await Amplify.Auth.signUp(
+      username: email,
+      password: password,
+      options: SignUpOptions(
+        userAttributes: userAttributes,
+      ),
+    );
+  }
+
+  @override
+  Future<void> confirmSignUp(
+      {required String email, required String code}) async {
+    await Amplify.Auth.confirmSignUp(username: email, confirmationCode: code);
+  }
+
+  @override
+  Future<void> resendConfirmationCode({required String email}) async {
+    await Amplify.Auth.resendSignUpCode(username: email);
   }
 }

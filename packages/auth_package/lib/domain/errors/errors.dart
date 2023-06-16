@@ -22,3 +22,38 @@ class ErrorGetLoggedUser extends Failure {
   @override
   final String message;
 }
+
+class ErrorSignUpEmail extends Failure {
+  ErrorSignUpEmail(this.message);
+
+  @override
+  final String message;
+}
+
+class ErrorConfirmSignUp extends Failure {
+  ErrorConfirmSignUp(this.message);
+
+  @override
+  final String message;
+}
+
+class ErrorResendConfirmationCode extends Failure {
+  ErrorResendConfirmationCode(this.message);
+
+  @override
+  final String message;
+}
+
+class ErrorEmailNotVerified extends Failure {
+  ErrorEmailNotVerified(this.message);
+
+  @override
+  final String message;
+}
+
+class ErrorPasswordNotReset extends Failure {
+  ErrorPasswordNotReset(this.message);
+
+  @override
+  final String message;
+}

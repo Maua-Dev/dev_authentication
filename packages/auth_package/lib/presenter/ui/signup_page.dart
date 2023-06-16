@@ -1,25 +1,20 @@
-import 'package:auth_package/presenter/ui/widgets/body_container.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:auth_package/presenter/stores/signup_store.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:auth_package/presenter/stores/login_store.dart';
+import 'widgets/body_container.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'widgets/text_field_custom.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final LoginStore store = Modular.get<LoginStore>();
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _SignUpPageState extends State<SignUpPage> {
+  final SignupStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,47 +44,31 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 TextFieldCustom(
                   onChanged: store.setEmail,
-                  onFieldSubmitted: (value) async {
-                    store.password.isEmpty
-                        ? FocusScope.of(context).nextFocus()
-                        : await store.loginEmail();
-                  },
                   text: 'Email',
                   prefixIcon: const Icon(Icons.email_outlined),
                 ),
                 const SizedBox(height: 16),
                 TextFieldCustom(
+                  onChanged: store.setName,
+                  text: 'Name',
+                  prefixIcon: const Icon(Icons.person_outline),
+                ),
+                const SizedBox(height: 16),
+                TextFieldCustom(
                   onChanged: store.setPassword,
                   onFieldSubmitted: (value) async {
-                    await store.loginEmail();
+                    await store.signUp();
                   },
                   text: 'Password',
                   obscureText: true,
                   prefixIcon: const Icon(Icons.key_outlined),
                 ),
                 const SizedBox(height: 16),
-                GestureDetector(
-                  onTap: () {
-                    Modular.to.pushNamed('./forgot-password');
-                  },
-                  child: const Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        'Forgot Password?',
-                      )),
-                ),
-                const SizedBox(height: 16),
                 ElevatedButton(
                     onPressed: () async {
-                      await store.loginEmail();
+                      await store.signUp();
                     },
-                    child: const Text('Login')),
-                const SizedBox(height: 24),
-                OutlinedButton(
-                    onPressed: () {
-                      Modular.to.pushNamed('./new');
-                    },
-                    child: const Text('Create Account'))
+                    child: const Text('Register')),
               ],
             );
           }),

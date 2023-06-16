@@ -8,12 +8,12 @@ abstract class GetLoggedUser {
 }
 
 class GetLoggedUserImpl implements GetLoggedUser {
-  final LoginRepository repository;
+  final LoginRepository _repository;
 
-  GetLoggedUserImpl(this.repository);
+  GetLoggedUserImpl(this._repository);
 
   @override
   Future<Either<Failure, LoggedUserInfo>> call() async {
-    return await repository.getLoggedUser();
+    return await _repository.getLoggedUser();
   }
 }

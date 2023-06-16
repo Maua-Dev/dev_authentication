@@ -9,9 +9,9 @@ abstract class LoginWithEmail {
 }
 
 class LoginWithEmailImpl implements LoginWithEmail {
-  final LoginRepository repository;
+  final LoginRepository _repository;
 
-  LoginWithEmailImpl(this.repository);
+  LoginWithEmailImpl(this._repository);
   @override
   Future<Either<Failure, LoggedUserInfo>> call(
       LoginCredential credential) async {
@@ -21,7 +21,7 @@ class LoginWithEmailImpl implements LoginWithEmail {
       return Left(ErrorLoginEmail('Invalid password'));
     }
 
-    return await repository.loginEmail(
+    return await _repository.loginEmail(
       email: credential.email,
       password: credential.password,
     );

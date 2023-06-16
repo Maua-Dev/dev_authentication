@@ -32,6 +32,16 @@ ThemeData darkTheme = ThemeData(
     trackColor: MaterialStateProperty.all<Color>(AppColors.primary),
     thumbColor: MaterialStateProperty.all<Color>(Colors.white),
   ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      backgroundColor: Colors.transparent,
+      minimumSize: const Size.fromHeight(50),
+      side: BorderSide(color: AppColors.primary),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: AppColors.primary)),
+    ),
+  ),
   inputDecorationTheme: const InputDecorationTheme(
     hintStyle: TextStyle(color: Colors.grey),
     fillColor: Colors.grey,
