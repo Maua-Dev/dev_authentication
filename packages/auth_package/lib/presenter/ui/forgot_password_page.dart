@@ -23,8 +23,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CachedNetworkImage(
-            imageUrl: 'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+          SizedBox(
+            height: 200,
+            child: CachedNetworkImage(
+              imageUrl: 'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+              fit: BoxFit.fill,
+            ),
           ),
           const SizedBox(height: 16),
           const TextFieldCustom(
