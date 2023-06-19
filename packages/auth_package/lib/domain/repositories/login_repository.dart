@@ -15,4 +15,9 @@ abstract class LoginRepository {
   Future<Either<Failure, Unit>> confirmSignUp(
       {required String email, required String code});
   Future<Either<Failure, Unit>> resendConfirmationCode({required String email});
+  Future<Either<Failure, Unit>> resetPassword({required String email});
+  Future<Either<Failure, Unit>> confirmResetPassword(
+      {required String email,
+      required String code,
+      required String newPassword});
 }

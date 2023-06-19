@@ -57,3 +57,17 @@ class ErrorPasswordNotReset extends Failure {
   @override
   final String message;
 }
+
+class ErrorResetPassword extends Failure {
+  ErrorResetPassword(this.message);
+
+  @override
+  final String message;
+}
+
+class ErrorConfirmResetPassword extends Failure {
+  ErrorConfirmResetPassword(this.message);
+
+  @override
+  final String message;
+}
