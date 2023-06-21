@@ -11,4 +11,9 @@ abstract class LoginDatasource {
       required bool isMaua});
   Future<void> confirmSignUp({required String email, required String code});
   Future<void> resendConfirmationCode({required String email});
+  Future<void> resetPassword({required String email});
+  Future<void> confirmResetPassword(
+      {required String email,
+      required String code,
+      required String newPassword});
 }

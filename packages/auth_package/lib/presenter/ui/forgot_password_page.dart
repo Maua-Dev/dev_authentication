@@ -1,6 +1,8 @@
 import 'package:auth_package/presenter/ui/widgets/body_container.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import '../stores/forgot_password_store.dart';
 import 'widgets/text_field_custom.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -11,6 +13,7 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  final ForgotPasswordStore store = Modular.get();
   @override
   void initState() {
     super.initState();
@@ -31,14 +34,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
           ),
           const SizedBox(height: 16),
-          const TextFieldCustom(
-            // onChanged: store.setEmail,
+          TextFieldCustom(
+            onChanged: store.setEmail,
+            onFieldSubmitted: (_) => store.resetPassword(),
             text: 'Email',
-            prefixIcon: Icon(Icons.email_outlined),
+            prefixIcon: const Icon(Icons.email_outlined),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
-              onPressed: () {}, child: const Text('Reset My Password'))
+              onPressed: store.resetPassword,
+              child: const Text('Reset My Password'))
         ],
       ),
     ));

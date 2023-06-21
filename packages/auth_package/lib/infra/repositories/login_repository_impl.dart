@@ -93,4 +93,28 @@ class LoginRepositoryImpl implements LoginRepository {
           ErrorResendConfirmationCode('Error resend confirmation code'));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> confirmResetPassword(
+      {required String email,
+      required String code,
+      required String newPassword}) async {
+    try {
+      await datasource.confirmResetPassword(
+          email: email, code: code, newPassword: newPassword);
+      return const Right(unit);
+    } catch (e) {
+      return Left(ErrorConfirmResetPassword('Error confirm reset password'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> resetPassword({required String email}) async {
+    try {
+      await datasource.resetPassword(email: email);
+      return const Right(unit);
+    } catch (e) {
+      return Left(ErrorResetPassword('Error reset password'));
+    }
+  }
 }
