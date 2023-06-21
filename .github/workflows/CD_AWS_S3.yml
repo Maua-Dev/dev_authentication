@@ -40,10 +40,10 @@ jobs:
              role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
              role-session-name: github-action
 
-         - name: Setup Amplify
-           run: curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
-         - name: Configure project
-           run: amplify configure project
+         - name: Setup Amplify and Configure project
+           run: | 
+            curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+            amplify configure project
            
          - run: flutter build web --release
 
