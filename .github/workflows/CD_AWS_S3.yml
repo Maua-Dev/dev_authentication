@@ -45,7 +45,7 @@ jobs:
             }"
             echo $PROVIDERS
             echo "PROVIDERS=$PROVIDERS" >> $GITHUB_ENV
-            ls ~/.aws/
+
 
          - name: Setup Flutter Version
            uses: subosito/flutter-action@v1
