@@ -42,7 +42,7 @@ jobs:
             }"
             PROVIDERS="{\
               \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-            }" >>
+            }"
             echo $PROVIDERS
             echo "PROVIDERS=$PROVIDERS" >> $GITHUB_ENV
             ls ~/.aws/
