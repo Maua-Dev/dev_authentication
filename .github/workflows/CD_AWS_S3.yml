@@ -27,12 +27,6 @@ jobs:
            with:
              java-version: "12.x"
 
-         - name: Setup Amplify and Configure project
-           shell: bash
-           run: | 
-            npm install -g @aws-amplify/cli
-            amplify configure project
-            
          - name: Setup Flutter Version
            uses: subosito/flutter-action@v1
            with:
@@ -47,8 +41,12 @@ jobs:
              role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
              role-session-name: github-action
 
-         
-           
+         - name: Setup Amplify and Configure project
+           shell: bash
+           run: | 
+            npm install -g @aws-amplify/cli
+            amplify configure project
+
          - run: flutter build web --release
 
          - name: Setup SAM
