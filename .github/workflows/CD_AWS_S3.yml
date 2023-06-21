@@ -43,6 +43,7 @@ jobs:
 
          - name: Setup Amplify and Configure project
            shell: bash
+           working-directory: packages/auth_package
            run: | 
             npm install -g @aws-amplify/cli
             amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} -y
