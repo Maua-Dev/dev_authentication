@@ -45,7 +45,7 @@ jobs:
            shell: bash
            run: | 
             npm install -g @aws-amplify/cli
-            amplify configure project
+            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }}
 
          - run: flutter build web --release
 
