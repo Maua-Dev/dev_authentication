@@ -45,7 +45,7 @@ jobs:
          - name: Config Envs to Amplify
            working-directory: packages/auth_package
            run: |
-             echo '{"projectPath": "${{ github.workspace }}","defaultEditor":"code","envName": "${{github.ref_name}}" }' > amplify/.config/local-env-info.json
+             echo '{"projectPath": "${{ github.workspace }}/packages/auth_package","defaultEditor":"code","envName": "${{github.ref_name}}" }' > amplify/.config/local-env-info.json
              cat amplify/.config/local-env-info.json
 
          - name: Setup Amplify and Configure project
@@ -56,8 +56,8 @@ jobs:
               \"configLevel\":\"project\",\
               \"useProfile\":false,\
               \"profileName\":\"default\",\
-              \"accessKeyId\":${{env.AWS_ACCESS_KEY_ID}},\
-              \"secretAccessKey\":${{env.AWS_SECRET_ACCESS_KEY}},\
+              \"accessKeyId\":\"${{env.AWS_ACCESS_KEY_ID}}\",\
+              \"secretAccessKey\":\"${{env.AWS_SECRET_ACCESS_KEY}}\",\
               \"region\":\"sa-east-1\"\
             }"
             PROVIDERS="{\
@@ -67,7 +67,8 @@ jobs:
             npm install -g @aws-amplify/cli
 
             amplify configure project --providers $PROVIDERS -y
-            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --provider $PROVIDERS -y 
+            echo "Amplify is configured"
+            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} -y 
       
          - run: flutter build web --release
 
