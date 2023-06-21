@@ -34,6 +34,7 @@ jobs:
              role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
              role-session-name: github-action
          - run: |
+            aws sts get-caller-identity
             AWSCLOUDFORMATIONCONFIG="{\
               \"configLevel\":\"project\",\
               \"useProfile\":true,\
