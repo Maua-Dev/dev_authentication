@@ -28,39 +28,39 @@ jobs:
              java-version: "12.x"
          
          - name: Setup AWS Credentials
-           uses: aws-actions/configure-aws-credentials@v2
+           uses: aws-actions/configure-aws-credentials@v1
            with:
              aws-region: sa-east-1
              role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
              role-session-name: github-action
-         - run: |
-            aws sts get-caller-identity
-            AWSCLOUDFORMATIONCONFIG="{\
-              \"configLevel\":\"project\",\
-              \"useProfile\":true,\
-              \"profileName\":\"default\",\
-              \"region\":\"sa-east-1\"\
-            }"
-            PROVIDERS="{\
-              \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-            }"
-            echo $PROVIDERS
-            echo "PROVIDERS=$PROVIDERS" >> $GITHUB_ENV
-
 
          - name: Setup Flutter Version
            uses: subosito/flutter-action@v1
            with:
              channel: "stable"
+
          - name: Get flutter dependencies
            run: flutter pub get
 
          - name: Setup Amplify and Configure project
            shell: bash
            working-directory: packages/auth_package
-           run: | 
+           run: |
+            cat ${env.AWS_ACCESS_KEY_ID}
+            cat $AWS_ACCESS_KEY_ID
+            AWSCLOUDFORMATIONCONFIG="{\
+              \"configLevel\":\"project\",\
+              \"useProfile\":false,\
+              \"profileName\":\"default\",\
+              \"accessKeyId\":${env.AWS_ACCESS_KEY_ID},\
+              \"secretAccessKey\":${env.AWS_SECRET_ACCESS_KEY},\
+              \"region\":\"sa-east-1\"\
+            }"
+            PROVIDERS="{\
+              \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+            }"
             npm install -g @aws-amplify/cli
-            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --providers ${{ env.PROVIDERS }} -y
+            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --provider $PROVIDERS -y 
       
          - run: flutter build web --release
 
@@ -77,7 +77,7 @@ jobs:
               ref: ${{ github.ref_name }}
            run: |
             sam build --template-file samtemplate.yml --use-container
-            sam deploy --no-fail-on-empty-changeset --template-file samtemplate.yml --stack-name ${{env.STACK_NAME}} --region ${{ vars.AWS_S3_BUCKET_REGION }}  --parameter-overrides "ParameterKey=HostedZoneId,ParameterValue=${{secrets.DEVMAUA_HOSTED_ZONE_ID}} ParameterKey=BucketName,ParameterValue=dev-auth-web-${{github.ref_name}} ParameterKey=AcmCertificateArn,ParameterValue=${{secrets.ACM_CERTIFICATE_ARN}} ParameterKey=AlternateDomainName,ParameterValue=${{vars.ALTERNATIVE_DOMAIN_NAME}}" --tags "project=DevAuth" "stack=FRONT" "stage=${ref^^}" "owner=DevCommunity"
+            sam deploy --no-fail-on-empty-changeset --template-file samtemplate.yml --stack-name ${{env.STACK_NAME}} --region ${{ vars.AWS_S3_BUCKET_REGION }}  --parameter-overrides "ParameterKey=HostedZoneId,ParameterValue=${{secrets.HOSTED_ZONE_ID}} ParameterKey=BucketName,ParameterValue=dev-auth-web-${{github.ref_name}} ParameterKey=AcmCertificateArn,ParameterValue=${{secrets.ACM_CERTIFICATE_ARN}} ParameterKey=AlternateDomainName,ParameterValue=${{vars.ALTERNATIVE_DOMAIN_NAME}}" --tags "project=DevAuth" "stack=FRONT" "stage=${ref^^}" "owner=DevCommunity"
          
          - name: Set CloudFront ID
            run: |
