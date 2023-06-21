@@ -46,8 +46,8 @@ jobs:
            shell: bash
            working-directory: packages/auth_package
            run: |
-            cat ${env.AWS_ACCESS_KEY_ID}
-            cat $AWS_ACCESS_KEY_ID
+            echo "${env.AWS_ACCESS_KEY_ID}"
+            echo "$AWS_ACCESS_KEY_ID"
             AWSCLOUDFORMATIONCONFIG="{\
               \"configLevel\":\"project\",\
               \"useProfile\":false,\
