@@ -41,6 +41,7 @@ jobs:
              role-session-name: github-action
 
          - name: Setup Amplify and Configure project
+           shell: bash
            run: | 
             curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
             amplify configure project
