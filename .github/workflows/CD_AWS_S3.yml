@@ -46,19 +46,18 @@ jobs:
            shell: bash
            working-directory: packages/auth_package
            run: |
-            echo "${env.AWS_ACCESS_KEY_ID}"
-            echo "$AWS_ACCESS_KEY_ID"
             AWSCLOUDFORMATIONCONFIG="{\
               \"configLevel\":\"project\",\
               \"useProfile\":false,\
               \"profileName\":\"default\",\
-              \"accessKeyId\":${env.AWS_ACCESS_KEY_ID},\
-              \"secretAccessKey\":${env.AWS_SECRET_ACCESS_KEY},\
+              \"accessKeyId\":${{env.AWS_ACCESS_KEY_ID}},\
+              \"secretAccessKey\":${{env.AWS_SECRET_ACCESS_KEY}},\
               \"region\":\"sa-east-1\"\
             }"
             PROVIDERS="{\
               \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
             }"
+            echo $PROVIDERS
             npm install -g @aws-amplify/cli
             amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --provider $PROVIDERS -y 
       
