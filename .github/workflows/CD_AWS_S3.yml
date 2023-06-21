@@ -41,11 +41,12 @@ jobs:
 
          - name: Get flutter dependencies
            run: flutter pub get
-           
+
          - name: Config Envs to Amplify
+           working-directory: packages/auth_package
            run: |
-             echo '{"projectPath": ${{ github.workspace }},"defaultEditor":"code","envName": ${{github.ref_name}} }' > ./amplify/.config/local-env-info.json
-             cat ./amplify/.config/local-env-info.json
+             echo '{"projectPath": "${{ github.workspace }}","defaultEditor":"code","envName": "${{github.ref_name}}" }' > amplify/.config/local-env-info.json
+             cat amplify/.config/local-env-info.json
 
          - name: Setup Amplify and Configure project
            shell: bash
