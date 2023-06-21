@@ -32,7 +32,7 @@ jobs:
              channel: "stable"
          - name: Get flutter dependencies
            run: flutter pub get
-
+  
          - name: Setup AWS Credentials
            uses: aws-actions/configure-aws-credentials@v1
            with:
@@ -40,6 +40,11 @@ jobs:
              role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
              role-session-name: github-action
 
+         - name: Setup Amplify
+           run: curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+         - name: Configure project
+           run: amplify configure project
+           
          - run: flutter build web --release
 
          - name: Setup SAM
