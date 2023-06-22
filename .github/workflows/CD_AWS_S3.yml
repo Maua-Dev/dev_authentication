@@ -52,9 +52,9 @@ jobs:
             aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}' > ~/.aws/credentials
             echo '[default]
-            region = ${{env.AWS_REGION}}' > ~/.aws/config
-            echo '{"projectPath": "${{github.workspace}}/packages/auth_package","defaultEditor":"code","envName":"${{ github.ref_name }}"}' > ./amplify/.config/local-env-info.json
-            echo '{"${{ github.ref_name }}":{"configLevel":"project","useProfile":true,"profileName":"default"}}' > ./amplify/.config/local-aws-info.json
+            region = sa-east-1' > ~/.aws/config
+            echo '{"projectPath": "${{github.workspace}}/packages/auth_package","defaultEditor":"code","envName":"${{ github.ref_name }}"}' > amplify/.config/local-env-info.json
+            echo '{"${{ github.ref_name }}":{"configLevel":"project","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
 
 
          - name: Setup Amplify projects
@@ -62,6 +62,8 @@ jobs:
            run: |
             cat ~/.aws/config
             cat ~/.aws/credentials
+            cat amplify/.config/local-env-info.json
+            cat amplify/.config/local-aws-info.json
             amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --yes
       
          - run: flutter build web --release
