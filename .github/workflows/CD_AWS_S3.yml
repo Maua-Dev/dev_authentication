@@ -52,11 +52,13 @@ jobs:
             aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}' > ~/.aws/credentials
             echo '[default]
-            region=${{env.AWS_REGION}}' > ~/.aws/config
+            region = ${{env.AWS_REGION}}' > ~/.aws/config
 
-         - name: Setup Amplify and Configure project
+         - name: Setup Amplify projects
            working-directory: packages/auth_package
            run: |
+            cat ~/.aws/config
+            cat ~/.aws/credentials
             amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --yes
       
          - run: flutter build web --release
