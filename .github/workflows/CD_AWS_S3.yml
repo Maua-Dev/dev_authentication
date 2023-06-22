@@ -47,21 +47,14 @@ jobs:
          - name: Set AWS credentials
            working-directory: packages/auth_package
            run: |
-            mkdir ~/.aws
-            echo '[default]
-            aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}' > ~/.aws/credentials
-            echo '[default]
-            region=sa-east-1' > ~/.aws/config
+            echo '{"accessKeyId":"${{ env.AWS_ACCESS_KEY_ID}}","secretAccessKey":"${{ env.AWS_SECRET_ACCESS_KEY}}","region":"sa-east-1"}' > ${{github.workspace}}/packages/auth_package/aws_config_file_path.json
             echo '{"projectPath": "${{github.workspace}}/packages/auth_package","defaultEditor":"code","envName":"${{ github.ref_name }}"}' > amplify/.config/local-env-info.json
             echo '{"${{ github.ref_name }}":{"configLevel":"project","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
-
 
          - name: Setup Amplify projects
            working-directory: packages/auth_package
            run: |
-            cat ~/.aws/config
-            cat ~/.aws/credentials
+            cat aws_config_file_path.json
             cat amplify/.config/local-env-info.json
             cat amplify/.config/local-aws-info.json
             amplify env pull --yes
