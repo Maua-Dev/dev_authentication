@@ -64,7 +64,7 @@ jobs:
             cat ~/.aws/credentials
             cat amplify/.config/local-env-info.json
             cat amplify/.config/local-aws-info.json
-            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --yes
+            amplify env pull --yes
       
          - run: flutter build web --release
 
