@@ -66,8 +66,7 @@ jobs:
             echo $PROVIDERS
             npm install -g @aws-amplify/cli
 
-           
-            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} -y 
+            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --provider $PROVIDERS -y 
       
          - run: flutter build web --release
 
