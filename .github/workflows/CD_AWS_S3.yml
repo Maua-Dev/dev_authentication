@@ -53,10 +53,20 @@ jobs:
            shell: bash
            working-directory: packages/auth_package
            run: |
-            cat ~/.aws/credentials 
+            AWSCLOUDFORMATIONCONFIG="{\
+              \"configLevel\":\"project\",\
+              \"useProfile\":true,\
+              \"profileName\":\"default\"
+            }"
+            PROVIDERS="{\
+              \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+            }"
+            echo $PROVIDERS
             npm install -g @aws-amplify/cli
 
-            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} -y 
+            amplify configure --providers $PROVIDERS -y
+            echo "Amplify is configured"
+            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --providers $PROVIDERS -y 
       
          - run: flutter build web --release
 
