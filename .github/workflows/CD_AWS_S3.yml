@@ -53,6 +53,9 @@ jobs:
             aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}' > ~/.aws/credentials
             echo '[default]
             region = ${{env.AWS_REGION}}' > ~/.aws/config
+            echo '{"projectPath": "${{github.workspace}}/packages/auth_package","defaultEditor":"code","envName":"${{ github.ref_name }}"}' > ./amplify/.config/local-env-info.json
+            echo '{"${{ github.ref_name }}":{"configLevel":"project","useProfile":true,"profileName":"default"}}' > ./amplify/.config/local-aws-info.json
+
 
          - name: Setup Amplify projects
            working-directory: packages/auth_package
