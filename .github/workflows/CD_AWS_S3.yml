@@ -46,6 +46,7 @@ jobs:
            working-directory: packages/auth_package
            run: |
              CREDENTIALS="[default]\naws_access_key_id=${{env.AWS_ACCESS_KEY_ID}}\naws_secret_access_key=${{env.AWS_SECRET_ACCESS_KEY}}"
+             mkdir ~/.aws
              echo -e $CREDENTIALS > ~/.aws/credentials
 
          - name: Setup Amplify and Configure project
