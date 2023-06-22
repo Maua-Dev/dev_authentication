@@ -28,7 +28,7 @@ jobs:
              java-version: "12.x"
          
          - name: Setup AWS Credentials
-           uses: aws-actions/configure-aws-credentials@v1
+           uses: aws-actions/configure-aws-credentials@v2
            with:
              aws-region: sa-east-1
              role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
@@ -41,21 +41,22 @@ jobs:
 
          - name: Get flutter dependencies
            run: flutter pub get
-           
-         - run: npm install -g @aws-amplify/cli
 
-         - name: Config Envs to Amplify
+         - run: npm install -g @aws-amplify/cli
+         
+         - name: Set AWS credentials
            working-directory: packages/auth_package
            run: |
-             CREDENTIALS="[default]\naws_access_key_id=${{env.AWS_ACCESS_KEY_ID}}\naws_secret_access_key=${{env.AWS_SECRET_ACCESS_KEY}}"
-             mkdir ~/.aws
-             echo -e $CREDENTIALS > ~/.aws/credentials
+            echo '[default]
+            aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}
+            aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}' > ~/.aws/credentials
+            echo '[default]
+            region=${{env.AWS_REGION}}' > ~/.aws/config
 
          - name: Setup Amplify and Configure project
-           shell: bash
            working-directory: packages/auth_package
            run: |
-            amplify pull -y 
+            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --yes
       
          - run: flutter build web --release
 
