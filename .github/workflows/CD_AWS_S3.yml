@@ -41,6 +41,8 @@ jobs:
 
          - name: Get flutter dependencies
            run: flutter pub get
+           
+         - run: npm install -g @aws-amplify/cli
 
          - name: Config Envs to Amplify
            working-directory: packages/auth_package
@@ -53,20 +55,7 @@ jobs:
            shell: bash
            working-directory: packages/auth_package
            run: |
-            AWSCLOUDFORMATIONCONFIG="{\
-              \"configLevel\":\"project\",\
-              \"useProfile\":true,\
-              \"profileName\":\"default\"
-            }"
-            PROVIDERS="{\
-              \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-            }"
-            echo $PROVIDERS
-            npm install -g @aws-amplify/cli
-
-            amplify configure --providers $PROVIDERS -y
-            echo "Amplify is configured"
-            amplify pull --appId ${{ vars.AMPLIFY_APP_ID }} --envName ${{ github.ref_name }} --providers $PROVIDERS -y 
+            amplify pull -y 
       
          - run: flutter build web --release
 
