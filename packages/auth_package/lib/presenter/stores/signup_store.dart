@@ -60,7 +60,7 @@ abstract class SignupStoreBase with Store {
       logger.e(e.message);
       await showToast(e.message);
     }, (r) {
-      Modular.to.navigate('/login/');
+      Modular.to.navigate('/confirm/');
     });
   }
 }

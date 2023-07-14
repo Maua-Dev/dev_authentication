@@ -31,7 +31,9 @@ class CognitoDatasource implements LoginDatasource {
         email: email,
         username: session.userPoolTokensResult.value.username,
         sub: session.userSubResult.value,
+        idToken: session.userPoolTokensResult.value.idToken.raw,
         accessToken: session.userPoolTokensResult.value.accessToken.raw,
+        refreshToken: session.userPoolTokensResult.value.refreshToken,
         emailVerified:
             session.userPoolTokensResult.value.idToken.emailVerified ?? false);
   }
@@ -62,7 +64,9 @@ class CognitoDatasource implements LoginDatasource {
           email: session.userPoolTokensResult.value.idToken.email!,
           username: session.userPoolTokensResult.value.username,
           sub: session.userSubResult.value,
+          idToken: session.userPoolTokensResult.value.idToken.raw,
           accessToken: session.userPoolTokensResult.value.accessToken.raw,
+          refreshToken: session.userPoolTokensResult.value.refreshToken,
           emailVerified:
               session.userPoolTokensResult.value.idToken.emailVerified ??
                   false);
