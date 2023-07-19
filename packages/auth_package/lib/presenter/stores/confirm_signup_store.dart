@@ -20,7 +20,7 @@ abstract class ConfirmSignupStoreBase with Store {
     logger.d('Data: ${Modular.args.data}');
     _email = Modular.args.data;
     if (_email == null) {
-      Modular.to.navigate('/login/');
+      // Modular.to.navigate('/login/');
     } else {
       startTimer();
     }

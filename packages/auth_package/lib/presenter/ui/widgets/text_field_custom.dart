@@ -7,6 +7,7 @@ class TextFieldCustom extends StatelessWidget {
   final void Function(String)? onChanged;
   final void Function(String)? onFieldSubmitted;
   final Widget? suffixIcon;
+  final String? Function(String?)? validator;
   const TextFieldCustom({
     super.key,
     required this.prefixIcon,
@@ -15,6 +16,7 @@ class TextFieldCustom extends StatelessWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.suffixIcon,
+    this.validator,
   });
 
   @override
@@ -23,6 +25,7 @@ class TextFieldCustom extends StatelessWidget {
         onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         obscureText: obscureText,
+        validator: validator,
         decoration: InputDecoration(
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
