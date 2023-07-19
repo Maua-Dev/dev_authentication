@@ -70,26 +70,32 @@ class _ConfirmationCodePageState extends State<ConfirmationCodePage> {
                 prefixIcon: const Icon(Icons.confirmation_number_outlined),
               ),
               const SizedBox(height: 16),
-              // ElevatedButton(
-              //   onPressed: store.confirm,
-              //   child: const Text('Confirm'),
-              // ),
-              // const SizedBox(height: 16),
               Observer(
                 builder: (context) {
-                  return ElevatedButton(
+                  return TextButton(
                     onPressed: store.timer > 0 ? () {} : store.resendCode,
-                    child: Text(store.timer > 0
-                        ? '${store.timer} seconds'
-                        : 'Resend Code'),
+                    child: Text.rich(TextSpan(
+                        children: store.timer == 0
+                            ? [
+                                const TextSpan(
+                                    text: 'Send code again',
+                                    style: const TextStyle(color: Colors.red))
+                              ]
+                            : [
+                                const TextSpan(
+                                    text:
+                                        'Dont receive the code? Resend Code in ',
+                                    style: TextStyle(color: Colors.white)),
+                                TextSpan(
+                                    text: '${store.timer} seconds',
+                                    style: const TextStyle(color: Colors.red)),
+                              ])),
                   );
                 },
               ),
               const SizedBox(height: 16),
-              OutlinedButton(
-                onPressed: store.goLogin,
-                child: const Text('Back to Login'),
-              ),
+              ElevatedButton(
+                  onPressed: store.confirm, child: const Text('Verify Code'))
             ],
           );
         })
