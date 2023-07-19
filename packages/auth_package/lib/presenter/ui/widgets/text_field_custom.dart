@@ -27,15 +27,9 @@ class TextFieldCustom extends StatelessWidget {
         obscureText: obscureText,
         validator: validator,
         decoration: InputDecoration(
-            suffixIcon: suffixIcon,
-            prefixIcon: prefixIcon,
-            hintText: text,
-            filled: true,
-            fillColor: Colors.grey[900],
-            focusColor: Colors.grey[900],
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(10),
-            )));
+          suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
+          hintText: text,
+        ));
   }
 }

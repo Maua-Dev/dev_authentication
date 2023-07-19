@@ -42,12 +42,14 @@ ThemeData darkTheme = ThemeData(
           side: BorderSide(color: AppColors.primary)),
     ),
   ),
-  inputDecorationTheme: const InputDecorationTheme(
-    hintStyle: TextStyle(color: Colors.grey),
-    fillColor: Colors.grey,
-    focusColor: Colors.grey,
+  inputDecorationTheme: InputDecorationTheme(
+    hintStyle: const TextStyle(color: Colors.grey),
+    filled: true,
+    fillColor: Colors.grey[900],
+    focusColor: Colors.grey[900],
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(10),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
