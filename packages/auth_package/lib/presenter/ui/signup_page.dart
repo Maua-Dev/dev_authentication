@@ -135,18 +135,15 @@ class _SignUpPageState extends State<SignUpPage> {
             ],
           ),
         ),
-        Observer(builder: (context) {
-          return BackButton(
-            color: Colors.white,
-            onPressed: () => store.getIndexPage == 0
-                ? (Modular.to.canPop()
-                    ? Modular.to.pop()
-                    : Modular.to.navigate('/login/'))
-                : store.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut),
-          );
-        }),
+        BackButton(
+          onPressed: () => store.getIndexPage == 0
+              ? (Modular.to.canPop()
+                  ? Modular.to.pop()
+                  : Modular.to.navigate('/login/'))
+              : store.previousPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut),
+        )
       ],
     )));
   }

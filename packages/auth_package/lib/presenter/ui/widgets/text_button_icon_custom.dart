@@ -11,11 +11,8 @@ class TextButtonIconCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            shape: BoxShape.rectangle,
-            color: Color(0xFFBA2512)),
+      child: Card(
+        color: Theme.of(context).primaryColor,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
