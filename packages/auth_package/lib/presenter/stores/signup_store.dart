@@ -1,4 +1,5 @@
 import 'package:auth_package/domain/entities/signup_credential.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
@@ -9,9 +10,25 @@ part 'signup_store.g.dart';
 
 class SignupStore = SignupStoreBase with _$SignupStore;
 
-abstract class SignupStoreBase with Store {
+abstract class SignupStoreBase extends PageController with Store {
   final Logger logger = Modular.get();
   final SignupWithEmail _signupWithEmail;
+
+  @observable
+  int _selectedPage = 0;
+
+  @override
+  int get initialPage => 0;
+
+  @override
+  bool get keepPage => true;
+
+  @computed
+  int get getIndexPage => _selectedPage;
+  @action
+  void pageChanged(int index) {
+    if (index < 3) _selectedPage = index;
+  }
 
   @observable
   bool isLoading = false;
@@ -24,11 +41,23 @@ abstract class SignupStoreBase with Store {
   @action
   void setEmail(String value) => email = value;
 
+  @computed
+  bool get isEmailMaua => email.contains('@maua.br');
+
   @observable
   String password = '';
 
   @action
   void setPassword(String value) => password = value;
+
+  @observable
+  String confirmPassword = '';
+
+  @action
+  void setConfirmPassword(String value) => confirmPassword = value;
+
+  @computed
+  bool get isPasswordEquals => password == confirmPassword;
 
   @observable
   String name = '';
@@ -60,7 +89,7 @@ abstract class SignupStoreBase with Store {
       logger.e(e.message);
       await showToast(e.message);
     }, (r) {
-      Modular.to.navigate('/confirm/');
+      Modular.to.navigate('./confirm');
     });
   }
 }
