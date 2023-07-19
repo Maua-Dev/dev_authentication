@@ -36,6 +36,5 @@ class TextButtonIconCustom extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

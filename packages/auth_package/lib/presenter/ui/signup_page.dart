@@ -1,5 +1,4 @@
 import 'package:auth_package/presenter/stores/signup_store.dart';
-import 'package:auth_package/presenter/ui/signup/email_page.dart';
 import 'package:auth_package/presenter/ui/widgets/text_button_icon_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';

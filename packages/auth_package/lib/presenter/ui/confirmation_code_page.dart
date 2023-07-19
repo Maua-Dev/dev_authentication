@@ -79,7 +79,7 @@ class _ConfirmationCodePageState extends State<ConfirmationCodePage> {
                             ? [
                                 const TextSpan(
                                     text: 'Send code again',
-                                    style: const TextStyle(color: Colors.red))
+                                    style: TextStyle(color: Colors.red))
                               ]
                             : [
                                 const TextSpan(
