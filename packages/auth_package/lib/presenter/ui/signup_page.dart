@@ -74,8 +74,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SignupFormWidget(
                   labelButton: 'Next',
-                  buttonOnPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                  buttonOnPressed: () async {
+                    if (_formKey.currentState!.validate() &&
+                        await store.checkLogin()) {
                       store.nextPage(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut);
@@ -87,7 +88,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     prefixIcon: const Icon(Icons.email_outlined),
                     validator: (p0) => store.isMaua && !store.isEmailMaua
                         ? 'Email must be @maua.br'
-                        : null,
+                        : (!store.credential.isValidEmail
+                            ? 'Email is invalid'
+                            : null),
                   ),
                 ),
                 SignupFormWidget(

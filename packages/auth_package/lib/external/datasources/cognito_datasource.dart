@@ -59,7 +59,6 @@ class CognitoDatasource implements LoginDatasource {
       if (!session.isSignedIn) {
         return null;
       }
-      logger.d('token: ${session.userPoolTokensResult.value.idToken}');
       return UserDto(
           email: session.userPoolTokensResult.value.idToken.email!,
           username: session.userPoolTokensResult.value.username,
@@ -119,5 +118,22 @@ class CognitoDatasource implements LoginDatasource {
   @override
   Future<void> resetPassword({required String email}) async {
     await Amplify.Auth.resetPassword(username: email);
+  }
+
+  @override
+  Future<bool> checkEmailExists({required String email}) async {
+    try {
+      await Amplify.Auth.signUp(username: email, password: 'pwd');
+      return false;
+    } on UsernameExistsException catch (e) {
+      logger.d(e.message);
+      return true;
+    } on InvalidParameterException catch (e) {
+      logger.d(e.message);
+      throw Exception();
+    } on AuthException catch (e) {
+      logger.d(e.message);
+      return false;
+    }
   }
 }

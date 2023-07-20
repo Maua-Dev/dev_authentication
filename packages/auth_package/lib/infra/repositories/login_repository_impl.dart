@@ -117,4 +117,18 @@ class LoginRepositoryImpl implements LoginRepository {
       return Left(ErrorResetPassword('Error reset password'));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> checkEmailExists(
+      {required String email}) async {
+    try {
+      final res = await datasource.checkEmailExists(email: email);
+      if (res) {
+        return Left(ErrorEmailExists('Email already exists'));
+      }
+      return Right(!res);
+    } catch (e) {
+      return Left(ErrorEmailInvalid('Email invalid'));
+    }
+  }
 }

@@ -16,4 +16,5 @@ abstract class LoginDatasource {
       {required String email,
       required String code,
       required String newPassword});
+  Future<bool> checkEmailExists({required String email});
 }

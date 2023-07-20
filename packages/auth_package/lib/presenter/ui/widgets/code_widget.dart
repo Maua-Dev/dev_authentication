@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:collection/collection.dart';
 
 class CodeWidget extends StatefulWidget {
   final void Function(String)? onChanged;
@@ -71,7 +72,7 @@ class _CodeWidgetState extends State<CodeWidget> {
                     focusNode: _boxesFocusNodes[index],
                     keyboardType: TextInputType.number,
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
+                      // LengthLimitingTextInputFormatter(1),
                       FilteringTextInputFormatter.digitsOnly,
                     ],
                     onTap: () {
@@ -84,6 +85,16 @@ class _CodeWidgetState extends State<CodeWidget> {
                       }
                     },
                     onChanged: (value) {
+                      if (value.length == 2) {
+                        _boxesControllers[index].clear();
+                        _boxesControllers[index].text = value.split('').last;
+                      } else if (value.length > 2) {
+                        _boxesControllers[index].clear();
+                        value.split('').forEachIndexed((i, element) {
+                          _boxesControllers[i].text = element;
+                        });
+                      }
+
                       setState(() {
                         _code = _boxesControllers.fold(
                             '',
@@ -92,7 +103,11 @@ class _CodeWidgetState extends State<CodeWidget> {
                       });
                       if (widget.onChanged != null) widget.onChanged!(_code);
                       if (value.isNotEmpty) {
-                        if (index < 5) {
+                        if (_code.length == 6) {
+                          if (widget.onSubmitted != null) {
+                            widget.onSubmitted!();
+                          }
+                        } else if (index < 5) {
                           FocusScope.of(context)
                               .requestFocus(_boxesFocusNodes[index + 1]);
                         } else {
