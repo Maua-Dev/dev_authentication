@@ -32,7 +32,6 @@ class _CodeWidgetState extends State<CodeWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _boxesControllers = [
       _box1Controller,

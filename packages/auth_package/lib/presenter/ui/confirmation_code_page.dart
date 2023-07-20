@@ -7,8 +7,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:auth_package/presenter/stores/confirm_signup_store.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/text_field_custom.dart';
-
 class ConfirmationCodePage extends StatefulWidget {
   const ConfirmationCodePage({super.key});
 
