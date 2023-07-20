@@ -202,7 +202,7 @@ packages:
     source: hosted
     version: "8.5.0"
   cached_network_image:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: cached_network_image
       sha256: fd3d0dc1d451f9a252b32d95d3f0c3c487bc41a75eba2e6097cb0b9c71491b15
@@ -298,20 +298,13 @@ packages:
     source: hosted
     version: "2.3.1"
   dartz:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dartz
       sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
       url: "https://pub.dev"
     source: hosted
     version: "0.10.1"
-  dependencies:
-    dependency: "direct main"
-    description:
-      path: "../dependencies"
-      relative: true
-    source: path
-    version: "0.0.1"
   device_info_plus:
     dependency: transitive
     description:
@@ -403,7 +396,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_mobx:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_mobx
       sha256: "0da4add0016387a7bf309a0d0c41d36c6b3ae25ed7a176409267f166509e723e"
@@ -411,7 +404,7 @@ packages:
     source: hosted
     version: "2.0.6+5"
   flutter_modular:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_modular
       sha256: "061f0bcc8f8c438d4c82f4ff70a9e61f109961c92b4e1eaf1bbfab75f577fe0e"
@@ -437,7 +430,7 @@ packages:
     source: sdk
     version: "0.0.0"
   fluttertoast:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: fluttertoast
       sha256: "474f7d506230897a3cd28c965ec21c5328ae5605fc9c400cd330e9e9d6ac175c"
@@ -501,7 +494,7 @@ packages:
     source: hosted
     version: "4.0.2"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: a3715e3bc90294e971cb7dc063fbf3cd9ee0ebf8604ffeafabd9e6f16abbdbe6
@@ -541,7 +534,7 @@ packages:
     source: hosted
     version: "2.1.1"
   logger:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: logger
       sha256: "7ad7215c15420a102ec687bb320a7312afd449bac63bfb1c60d9787c27b9767f"
@@ -589,7 +582,7 @@ packages:
     source: hosted
     version: "1.0.4"
   mobx:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: mobx
       sha256: "0afcf88b3ee9d6819890bf16c11a727fc8c62cf736fda8e5d3b9b4eace4e62ea"
@@ -914,7 +907,7 @@ packages:
     source: hosted
     version: "1.2.0"
   string_validator:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: string_validator
       sha256: b419cf5d21d608522e6e7cafed4deb34b6f268c43df866e63c320bab98a08cf6
