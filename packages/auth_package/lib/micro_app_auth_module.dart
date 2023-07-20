@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
-import 'amplify/amplify_config.dart';
+import 'amplifyfiles/amplify_config.dart';
 import 'core/auth_store.dart';
 import 'domain/repositories/login_repository.dart';
 import 'domain/usecases/get_logged_user.dart';
@@ -10,8 +10,8 @@ import 'infra/datasources/login_datasource.dart';
 import 'infra/repositories/login_repository_impl.dart';
 
 class MicroAppAuthModule extends Module {
-  MicroAppAuthModule() {
-    configureAmplify();
+  MicroAppAuthModule(String amplifyconfig) {
+    configureAmplify(amplifyconfig);
     Logger.level = Level.debug;
   }
   @override

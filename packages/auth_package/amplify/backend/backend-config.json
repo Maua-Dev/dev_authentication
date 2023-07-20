@@ -1,6 +1,6 @@
 {
   "auth": {
-    "loginc9df2a4f": {
+    "authenticationfc0f2c95": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -9,35 +9,35 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_loginc9df2a4f_nativeClientId": {
+    "AMPLIFY_auth_authenticationfc0f2c95_nativeClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "loginc9df2a4f"
+          "resourceName": "authenticationfc0f2c95"
         }
       ]
     },
-    "AMPLIFY_auth_loginc9df2a4f_userPoolId": {
+    "AMPLIFY_auth_authenticationfc0f2c95_userPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "loginc9df2a4f"
+          "resourceName": "authenticationfc0f2c95"
         }
       ]
     },
-    "AMPLIFY_auth_loginc9df2a4f_userPoolName": {
+    "AMPLIFY_auth_authenticationfc0f2c95_userPoolName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "loginc9df2a4f"
+          "resourceName": "authenticationfc0f2c95"
         }
       ]
     },
-    "AMPLIFY_auth_loginc9df2a4f_webClientId": {
+    "AMPLIFY_auth_authenticationfc0f2c95_webClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "loginc9df2a4f"
+          "resourceName": "authenticationfc0f2c95"
         }
       ]
     }

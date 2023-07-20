@@ -55,7 +55,7 @@ abstract class HomeStoreBase with Store {
 
   void signIn() {
     launchUrlString(
-        '${params!.redirectUri}/#id_token=${_authStore.user?.accessToken}}',
+        '${params!.redirectUri}/#id_token=${_authStore.user?.idToken}&access_token=${_authStore.user?.accessToken}&refresh_token=${_authStore.user?.refreshToken}&token_type=Bearer',
         webOnlyWindowName: '_self');
   }
 

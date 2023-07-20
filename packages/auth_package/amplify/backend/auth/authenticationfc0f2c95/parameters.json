@@ -1,6 +1,6 @@
 {
   "authSelections": "userPoolOnly",
-  "resourceName": "loginc9df2a4f",
+  "resourceName": "authenticationfc0f2c95",
   "serviceType": "imported",
   "region": "sa-east-1",
   "usernameAttributes": [
