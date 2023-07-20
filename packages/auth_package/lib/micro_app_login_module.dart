@@ -1,3 +1,4 @@
+import 'package:auth_package/domain/usecases/check_login_exists.dart';
 import 'package:auth_package/domain/usecases/confirm_signup.dart';
 import 'package:auth_package/domain/usecases/resend_confirmation_code.dart';
 import 'package:auth_package/domain/usecases/reset_password.dart';
@@ -20,10 +21,11 @@ import 'presenter/ui/confirmation_code_page.dart';
 class MicroAppLoginModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.lazySingleton<CheckLoginExists>((i) => CheckLoginExistsImpl(i())),
     Bind.lazySingleton<ResetPassword>((i) => ResetPasswordImpl(i())),
     Bind.lazySingleton((i) => ForgotPasswordStore(i())),
     Bind.lazySingleton<SignupWithEmail>((i) => SignupWithEmailImpl(i())),
-    Bind.lazySingleton((i) => SignupStore(i())),
+    Bind.lazySingleton((i) => SignupStore(i(), i())),
     Bind.lazySingleton<LoginWithEmail>(
         (i) => LoginWithEmailImpl(i<LoginRepository>())),
     Bind.lazySingleton((i) => LoginStore(i<LoginWithEmail>(), i<AuthStore>())),

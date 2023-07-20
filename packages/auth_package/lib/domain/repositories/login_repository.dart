@@ -20,4 +20,5 @@ abstract class LoginRepository {
       {required String email,
       required String code,
       required String newPassword});
+  Future<Either<Failure, bool>> checkEmailExists({required String email});
 }

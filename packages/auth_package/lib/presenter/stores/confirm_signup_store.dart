@@ -20,7 +20,7 @@ abstract class ConfirmSignupStoreBase with Store {
     logger.d('Data: ${Modular.args.data}');
     _email = Modular.args.data;
     if (_email == null) {
-      // Modular.to.navigate('/login/');
+      Modular.to.navigate('/login/');
     } else {
       startTimer();
     }
@@ -76,6 +76,7 @@ abstract class ConfirmSignupStoreBase with Store {
     _timer = Timer.periodic(const Duration(seconds: 1), (t) {
       if (timer == 0) {
         stopTimer();
+        return;
       }
       setTimer(timer - 1);
       logger.d('Timer: $timer');

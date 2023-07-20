@@ -1,11 +1,11 @@
 import 'package:auth_package/presenter/ui/widgets/body_container.dart';
+import 'package:auth_package/presenter/ui/widgets/code_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:auth_package/presenter/stores/confirm_signup_store.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/text_field_custom.dart';
 
 class ConfirmationCodePage extends StatefulWidget {
   const ConfirmationCodePage({super.key});
@@ -57,39 +57,32 @@ class _ConfirmationCodePageState extends State<ConfirmationCodePage> {
           }
           return Column(
             children: [
-              TextFieldCustom(
-                suffixIcon: IconButton(
-                  onPressed: store.confirm,
-                  icon: const Icon(Icons.arrow_forward_ios),
-                ),
+              CodeWidget(
                 onChanged: store.setCode,
-                onFieldSubmitted: (value) async {
-                  await store.confirm();
-                },
-                text: 'Confirmation Code',
-                prefixIcon: const Icon(Icons.confirmation_number_outlined),
+                onSubmitted: store.confirm,
               ),
               const SizedBox(height: 16),
               Observer(
                 builder: (context) {
-                  return TextButton(
-                    onPressed: store.timer > 0 ? () {} : store.resendCode,
-                    child: Text.rich(TextSpan(
-                        children: store.timer == 0
-                            ? [
-                                const TextSpan(
-                                    text: 'Send code again',
-                                    style: const TextStyle(color: Colors.red))
-                              ]
-                            : [
-                                const TextSpan(
-                                    text:
-                                        'Dont receive the code? Resend Code in ',
-                                    style: TextStyle(color: Colors.white)),
-                                TextSpan(
-                                    text: '${store.timer} seconds',
-                                    style: const TextStyle(color: Colors.red)),
-                              ])),
+                  return Text.rich(
+                    TextSpan(
+                      children: store.timer > 0
+                          ? [
+                              const TextSpan(
+                                  text:
+                                      'Dont receive the code? Resend Code in '),
+                              TextSpan(
+                                  text: '${store.timer} seconds',
+                                  style: const TextStyle(color: Colors.red)),
+                            ]
+                          : [
+                              TextSpan(
+                                  text: 'Send code again',
+                                  style: const TextStyle(color: Colors.red),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = store.resendCode),
+                            ],
+                    ),
                   );
                 },
               ),

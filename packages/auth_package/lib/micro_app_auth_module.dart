@@ -10,8 +10,8 @@ import 'infra/datasources/login_datasource.dart';
 import 'infra/repositories/login_repository_impl.dart';
 
 class MicroAppAuthModule extends Module {
-  MicroAppAuthModule() {
-    configureAmplify();
+  MicroAppAuthModule(String amplifyconfig) {
+    configureAmplify(amplifyconfig);
     Logger.level = Level.debug;
   }
   @override

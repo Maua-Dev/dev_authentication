@@ -71,3 +71,17 @@ class ErrorConfirmResetPassword extends Failure {
   @override
   final String message;
 }
+
+class ErrorEmailExists extends Failure {
+  ErrorEmailExists(this.message);
+
+  @override
+  final String message;
+}
+
+class ErrorEmailInvalid extends Failure {
+  ErrorEmailInvalid(this.message);
+
+  @override
+  final String message;
+}
