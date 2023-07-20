@@ -6,6 +6,7 @@ import 'package:auth_package/presenter/stores/confirm_signup_store.dart';
 import 'package:auth_package/presenter/stores/forgot_password_store.dart';
 import 'package:auth_package/presenter/stores/signup_store.dart';
 import 'package:auth_package/presenter/ui/signup_page.dart';
+import 'package:auth_package/presenter/ui/widgets/code_widget.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:auth_package/core/auth_store.dart';
 import 'package:auth_package/domain/usecases/login_with_email.dart';

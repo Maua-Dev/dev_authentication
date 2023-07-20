@@ -27,6 +27,7 @@ abstract class SignupStoreBase extends PageController with Store {
   int get getIndexPage => _selectedPage;
   @action
   void pageChanged(int index) {
+    if (index == 0 && _selectedPage == 1) setEmail('');
     if (index < 3) _selectedPage = index;
   }
 
@@ -89,7 +90,7 @@ abstract class SignupStoreBase extends PageController with Store {
       logger.e(e.message);
       await showToast(e.message);
     }, (r) {
-      Modular.to.navigate('./confirm');
+      Modular.to.navigate('./confirm', arguments: credential.email);
     });
   }
 }

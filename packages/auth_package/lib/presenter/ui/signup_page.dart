@@ -40,11 +40,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 16),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: GridView.count(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 32,
-                      mainAxisSpacing: 32,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 24,
                       shrinkWrap: true,
                       children: [
                         TextButtonIconCustom(
@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   curve: Curves.easeInOut);
                             },
                             iconData: Icons.school_outlined,
-                            title: 'Aluno'),
+                            title: 'Mauá'),
                         TextButtonIconCustom(
                             onTap: () {
                               store.setIsMaua(false);
@@ -64,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   curve: Curves.easeInOut);
                             },
                             iconData: Icons.person,
-                            title: 'Não Aluno')
+                            title: 'Externo')
                       ],
                     ),
                   )

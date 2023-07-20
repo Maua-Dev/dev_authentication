@@ -17,7 +17,7 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Dev Auth',
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       darkTheme: darkTheme,
       theme: lightTheme,
       routeInformationParser: Modular.routeInformationParser,
