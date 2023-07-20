@@ -44,5 +44,28 @@
         }
       }
     }
+  },
+  "homolog": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-authentication-homolog-164108-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-homolog-164108-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-homolog-164108-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-authentication-homolog-164108-deployment",
+      "UnauthRoleName": "amplify-authentication-homolog-164108-unauthRole",
+      "StackName": "amplify-authentication-homolog-164108",
+      "StackId": "arn:aws:cloudformation:sa-east-1:264055331071:stack/amplify-authentication-homolog-164108/60280710-2735-11ee-aa86-0a3e322961c0",
+      "AmplifyAppId": "d3naf2rz1nj7ky"
+    },
+    "categories": {
+      "auth": {
+        "authenticationfc0f2c95": {
+          "userPoolId": "sa-east-1_nitcbMuAk",
+          "userPoolName": "authdevcognitostackdevauthdevuserpooldevC7139F74-pR1Mu1egrsFU",
+          "webClientId": "6nvinuq1mbkju02dabfdpij3kn",
+          "nativeClientId": "6nvinuq1mbkju02dabfdpij3kn"
+        }
+      }
+    }
   }
 }
