@@ -1,4 +1,5 @@
 import 'package:auth_package/login.dart';
+import 'package:dev_authentication/amplifyconfiguration.dart';
 import 'package:dev_authentication/app/home/domain/repositories/uri_repository.dart';
 import 'package:dev_authentication/app/home/domain/usecases/get_params.dart';
 import 'package:dev_authentication/app/home/domain/usecases/set_params.dart';
@@ -10,7 +11,7 @@ import 'home/presenter/stores/home_store.dart';
 
 class AppModule extends Module {
   @override
-  List<Module> get imports => [MicroAppAuthModule()];
+  List<Module> get imports => [MicroAppAuthModule(amplifyconfig)];
 
   @override
   List<Bind<Object>> get binds => [

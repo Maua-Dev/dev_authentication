@@ -7,12 +7,12 @@ abstract class Logout {
 }
 
 class LogoutImpl implements Logout {
-  final LoginRepository repository;
+  final LoginRepository _repository;
 
-  LogoutImpl(this.repository);
+  LogoutImpl(this._repository);
 
   @override
   Future<Either<Failure, Unit>> call() async {
-    return await repository.logout();
+    return await _repository.logout();
   }
 }

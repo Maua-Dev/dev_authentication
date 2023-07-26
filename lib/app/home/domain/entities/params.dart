@@ -1,10 +1,14 @@
+import 'package:dev_authentication/app/home/domain/helpers/callbacks.dart';
+
 class Params {
   final String? redirectUri;
 
   Params._({required this.redirectUri});
 
   bool get isValidParams => _isValidRedirectUri;
-  bool get _isValidRedirectUri => redirectUri?.isNotEmpty ?? false;
+  bool get _isValidRedirectUri =>
+      (redirectUri?.isNotEmpty ?? false) &&
+      Callbacks.verificaDominio(redirectUri ?? '');
 
   String get paramsRequiredMessage => [
         !_isValidRedirectUri ? 'redirect_uri' : null

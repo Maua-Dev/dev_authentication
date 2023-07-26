@@ -1,23 +1,69 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-login-dev-181120-authRole",
-      "UnauthRoleArn": "arn:aws:iam::264055331071:role/amplify-login-dev-181120-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::264055331071:role/amplify-login-dev-181120-authRole",
+      "AuthRoleName": "amplify-authentication-dev-180846-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-dev-180846-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-dev-180846-authRole",
       "Region": "sa-east-1",
-      "DeploymentBucketName": "amplify-login-dev-181120-deployment",
-      "UnauthRoleName": "amplify-login-dev-181120-unauthRole",
-      "StackName": "amplify-login-dev-181120",
-      "StackId": "arn:aws:cloudformation:sa-east-1:264055331071:stack/amplify-login-dev-181120/83c7e4e0-089c-11ee-92aa-0a2364e52614",
-      "AmplifyAppId": "d1e6grk8na3kh9"
+      "DeploymentBucketName": "amplify-authentication-dev-180846-deployment",
+      "UnauthRoleName": "amplify-authentication-dev-180846-unauthRole",
+      "StackName": "amplify-authentication-dev-180846",
+      "StackId": "arn:aws:cloudformation:sa-east-1:264055331071:stack/amplify-authentication-dev-180846/7bb0ad60-0ee5-11ee-86f1-06f51a86ca82",
+      "AmplifyAppId": "d3naf2rz1nj7ky"
     },
     "categories": {
       "auth": {
-        "loginc9df2a4f": {
-          "userPoolId": "sa-east-1_y54N4rLNi",
-          "userPoolName": "CognitoStackauthdevuserpool0E5939A2-8zZtA4gu2FIn",
-          "webClientId": "41i1bq4qnrojfbep6q0cejbvlv",
-          "nativeClientId": "41i1bq4qnrojfbep6q0cejbvlv"
+        "authenticationfc0f2c95": {
+          "userPoolId": "sa-east-1_nitcbMuAk",
+          "userPoolName": "authdevcognitostackdevauthdevuserpooldevC7139F74-pR1Mu1egrsFU",
+          "webClientId": "6nvinuq1mbkju02dabfdpij3kn",
+          "nativeClientId": "6nvinuq1mbkju02dabfdpij3kn"
+        }
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-authentication-prod-181036-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-prod-181036-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-prod-181036-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-authentication-prod-181036-deployment",
+      "UnauthRoleName": "amplify-authentication-prod-181036-unauthRole",
+      "StackName": "amplify-authentication-prod-181036",
+      "StackId": "arn:aws:cloudformation:sa-east-1:264055331071:stack/amplify-authentication-prod-181036/bcde29c0-0ee5-11ee-8063-06f00b8abf78",
+      "AmplifyAppId": "d3naf2rz1nj7ky"
+    },
+    "categories": {
+      "auth": {
+        "authenticationfc0f2c95": {
+          "userPoolId": "sa-east-1_mFU5wNvzL",
+          "userPoolName": "authdevcognitostackprodauthdevuserpoolprodF3D9AEA9-80Gvgl3gzfIs",
+          "webClientId": "72fv1sajeee4pfspj6jfc9j3ts",
+          "nativeClientId": "72fv1sajeee4pfspj6jfc9j3ts"
+        }
+      }
+    }
+  },
+  "homolog": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-authentication-homolog-164108-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-homolog-164108-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264055331071:role/amplify-authentication-homolog-164108-authRole",
+      "Region": "sa-east-1",
+      "DeploymentBucketName": "amplify-authentication-homolog-164108-deployment",
+      "UnauthRoleName": "amplify-authentication-homolog-164108-unauthRole",
+      "StackName": "amplify-authentication-homolog-164108",
+      "StackId": "arn:aws:cloudformation:sa-east-1:264055331071:stack/amplify-authentication-homolog-164108/60280710-2735-11ee-aa86-0a3e322961c0",
+      "AmplifyAppId": "d3naf2rz1nj7ky"
+    },
+    "categories": {
+      "auth": {
+        "authenticationfc0f2c95": {
+          "userPoolId": "sa-east-1_nitcbMuAk",
+          "userPoolName": "authdevcognitostackdevauthdevuserpooldevC7139F74-pR1Mu1egrsFU",
+          "webClientId": "6nvinuq1mbkju02dabfdpij3kn",
+          "nativeClientId": "6nvinuq1mbkju02dabfdpij3kn"
         }
       }
     }

@@ -6,6 +6,8 @@ class TextFieldCustom extends StatelessWidget {
   final bool obscureText;
   final void Function(String)? onChanged;
   final void Function(String)? onFieldSubmitted;
+  final Widget? suffixIcon;
+  final String? Function(String?)? validator;
   const TextFieldCustom({
     super.key,
     required this.prefixIcon,
@@ -13,6 +15,8 @@ class TextFieldCustom extends StatelessWidget {
     this.obscureText = false,
     this.onChanged,
     this.onFieldSubmitted,
+    this.suffixIcon,
+    this.validator,
   });
 
   @override
@@ -21,15 +25,11 @@ class TextFieldCustom extends StatelessWidget {
         onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         obscureText: obscureText,
+        validator: validator,
         decoration: InputDecoration(
-            prefixIcon: prefixIcon,
-            hintText: text,
-            filled: true,
-            fillColor: Colors.grey[900],
-            focusColor: Colors.grey[900],
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(10),
-            )));
+          suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
+          hintText: text,
+        ));
   }
 }

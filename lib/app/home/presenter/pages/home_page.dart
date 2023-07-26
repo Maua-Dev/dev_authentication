@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Text(
                               S.of(context).textErrorHome,
-                              style: TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 16),
                             ),
                             const SizedBox(
                               height: 16,
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                                   S
                                       .of(context)
                                       .textSubErrorHome('', store.error!),
-                                  style: TextStyle(color: Colors.red)),
+                                  style: const TextStyle(color: Colors.red)),
                             ),
                           ],
                         ),

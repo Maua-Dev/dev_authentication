@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:auth_package/domain/errors/errors.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 import 'package:auth_package/core/auth_store.dart';
@@ -48,6 +51,11 @@ abstract class LoginStoreBase with Store {
     user.fold((e) async {
       logger.e(e.message);
       await showToast(e.message);
+      if (e is ErrorEmailNotVerified) {
+        Modular.to.pushNamed('./confirm', arguments: credential.email);
+      } else if (e is ErrorPasswordNotReset) {
+        logger.i('Password not reset');
+      }
     }, (user) {
       _authStore.setUser(user);
       Modular.to.navigate('/');

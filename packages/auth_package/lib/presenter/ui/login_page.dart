@@ -84,9 +84,12 @@ class _LoginPageState extends State<LoginPage> {
                       await store.loginEmail();
                     },
                     child: const Text('Login')),
-                const SizedBox(height: 32),
-                const ElevatedButton(
-                    onPressed: null, child: Text('Create Account'))
+                const SizedBox(height: 24),
+                OutlinedButton(
+                    onPressed: () {
+                      Modular.to.pushNamed('./new');
+                    },
+                    child: const Text('Create Account'))
               ],
             );
           }),
