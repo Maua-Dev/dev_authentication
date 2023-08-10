@@ -58,9 +58,10 @@ class _CodeWidgetState extends State<CodeWidget> {
         builder: (BuildContext context, BoxConstraints constraints) {
       return RawKeyboardListener(
         focusNode: FocusNode(),
+        autofocus: true,
         onKey: (value) {
           if (value.logicalKey == LogicalKeyboardKey.backspace ||
-              value.logicalKey == PhysicalKeyboardKey.backspace) {
+              value.physicalKey == PhysicalKeyboardKey.backspace) {
             _boxesFocusNodes.forEachIndexed((index, element) {
               if (element.hasFocus) {
                 if (_code.length == index && index > 0) {
