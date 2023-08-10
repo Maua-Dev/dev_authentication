@@ -18,7 +18,8 @@ abstract class ConfirmSignupStoreBase with Store {
   Timer? _timer;
   ConfirmSignupStoreBase(this._confirmSignup, this._resendConfirmationCode) {
     logger.d('Data: ${Modular.args.data}');
-    _email = Modular.args.data;
+    // _email = Modular.args.data;
+    _email = 'biba@mailna.co';
     if (_email == null) {
       Modular.to.navigate('/login/');
     } else {
@@ -79,7 +80,6 @@ abstract class ConfirmSignupStoreBase with Store {
         return;
       }
       setTimer(timer - 1);
-      logger.d('Timer: $timer');
     });
   }
 

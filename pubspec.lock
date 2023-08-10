@@ -119,7 +119,7 @@ packages:
       path: "packages/auth_package"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
   aws_common:
     dependency: transitive
     description:
