@@ -1,8 +1,10 @@
 import 'package:auth_package/domain/usecases/check_login_exists.dart';
+import 'package:auth_package/domain/usecases/confirm_new_password.dart';
 import 'package:auth_package/domain/usecases/confirm_signup.dart';
 import 'package:auth_package/domain/usecases/resend_confirmation_code.dart';
 import 'package:auth_package/domain/usecases/reset_password.dart';
 import 'package:auth_package/domain/usecases/signup_with_email.dart';
+import 'package:auth_package/presenter/stores/confirm_new_password_store.dart';
 import 'package:auth_package/presenter/stores/confirm_signup_store.dart';
 import 'package:auth_package/presenter/stores/forgot_password_store.dart';
 import 'package:auth_package/presenter/stores/signup_store.dart';
@@ -21,6 +23,8 @@ import 'presenter/ui/confirmation_code_page.dart';
 class MicroAppLoginModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.lazySingleton<ConfirmNewPassword>((i) => ConfirmNewPasswordImpl(i())),
+    Bind.lazySingleton((i) => ConfirmNewPasswordStore(i())),
     Bind.lazySingleton<CheckLoginExists>((i) => CheckLoginExistsImpl(i())),
     Bind.lazySingleton<ResetPassword>((i) => ResetPasswordImpl(i())),
     Bind.lazySingleton((i) => ForgotPasswordStore(i())),
@@ -44,6 +48,11 @@ class MicroAppLoginModule extends Module {
     ChildRoute('/confirm',
         child: (_, __) => const ConfirmationCodePage(),
         transition: TransitionType.rightToLeftWithFade),
-    ChildRoute('/forgot-password', child: (_, __) => const ForgotPasswordPage())
+    ChildRoute('/forgot-password',
+        child: (_, __) => const ForgotPasswordPage(),
+        transition: TransitionType.rightToLeftWithFade),
+    ChildRoute('/confirm-new-password',
+        child: (_, __) => const ConfirmationCodePage(),
+        transition: TransitionType.rightToLeftWithFade)
   ];
 }

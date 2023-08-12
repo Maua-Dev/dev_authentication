@@ -72,11 +72,14 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () {
                     Modular.to.pushNamed('./forgot-password');
                   },
-                  child: const Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        'Forgot Password?',
-                      )),
+                  child: const MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'Forgot Password?',
+                        )),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(

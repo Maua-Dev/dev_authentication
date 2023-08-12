@@ -19,4 +19,5 @@ class NewPassword {
       newPassword.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
   bool get isValidConfirmPassword =>
       isValidNewPassword && confirmPassword == newPassword;
+  bool get isValid => isValidCode && isValidConfirmPassword;
 }

@@ -18,8 +18,7 @@ abstract class ConfirmSignupStoreBase with Store {
   Timer? _timer;
   ConfirmSignupStoreBase(this._confirmSignup, this._resendConfirmationCode) {
     logger.d('Data: ${Modular.args.data}');
-    // _email = Modular.args.data;
-    _email = 'biba@mailna.co';
+    _email = Modular.args.data;
     if (_email == null) {
       Modular.to.navigate('/login/');
     } else {
