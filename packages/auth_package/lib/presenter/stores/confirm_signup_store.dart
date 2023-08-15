@@ -79,7 +79,6 @@ abstract class ConfirmSignupStoreBase with Store {
         return;
       }
       setTimer(timer - 1);
-      logger.d('Timer: $timer');
     });
   }
 
