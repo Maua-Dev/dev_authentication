@@ -8,6 +8,7 @@ import 'package:auth_package/presenter/stores/confirm_new_password_store.dart';
 import 'package:auth_package/presenter/stores/confirm_signup_store.dart';
 import 'package:auth_package/presenter/stores/forgot_password_store.dart';
 import 'package:auth_package/presenter/stores/signup_store.dart';
+import 'package:auth_package/presenter/ui/confirm_new_password_page.dart';
 import 'package:auth_package/presenter/ui/signup_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:auth_package/core/auth_store.dart';
@@ -42,17 +43,17 @@ class MicroAppLoginModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, __) => const LoginPage()),
-    ChildRoute('/new',
+    ChildRoute('/new/',
         child: (_, __) => const SignUpPage(),
         transition: TransitionType.rightToLeftWithFade),
-    ChildRoute('/confirm',
+    ChildRoute('/confirm/',
         child: (_, __) => const ConfirmationCodePage(),
         transition: TransitionType.rightToLeftWithFade),
-    ChildRoute('/forgot-password',
+    ChildRoute('/forgot-password/',
         child: (_, __) => const ForgotPasswordPage(),
         transition: TransitionType.rightToLeftWithFade),
-    ChildRoute('/confirm-new-password',
-        child: (_, __) => const ConfirmationCodePage(),
+    ChildRoute('/forgot-password/new-password/',
+        child: (_, __) => const ConfirmNewPasswordPage(),
         transition: TransitionType.rightToLeftWithFade)
   ];
 }
