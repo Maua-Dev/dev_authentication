@@ -27,7 +27,7 @@ abstract class ForgotPasswordStoreBase with Store {
       setLoading(true);
 
       await _resetPassword(email: email);
-      Modular.to.pushNamed('./confirm-new-password/', arguments: email);
+      Modular.to.pushNamed('./new-password/', arguments: email);
     } catch (e) {
       logger.e(e);
     } finally {

@@ -15,7 +15,7 @@ abstract class ConfirmNewPasswordStoreBase with Store {
   ConfirmNewPasswordStoreBase(this._confirmNewPassword) {
     _email = Modular.args.data;
     if (_email == null) {
-      Modular.to.navigate('/forgot-password/');
+      Modular.to.navigate('../');
     }
   }
   @observable
