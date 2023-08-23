@@ -29,7 +29,7 @@ class LoginRepositoryImpl implements LoginRepository {
       return Left(e);
     } catch (e) {
       logger.e(e);
-      return Left(ErrorLoginEmail('Error login with email'));
+      return Left(ErrorLoginEmail('Error ao fazer login'));
     }
   }
 
@@ -39,7 +39,7 @@ class LoginRepositoryImpl implements LoginRepository {
       await datasource.logout();
       return const Right(unit);
     } catch (e) {
-      return Left(ErrorLogout('Error logout'));
+      return Left(ErrorLogout('Error ao fazer logout'));
     }
   }
 
@@ -50,9 +50,9 @@ class LoginRepositoryImpl implements LoginRepository {
       if (user != null) {
         return Right(user);
       }
-      return Left(ErrorGetLoggedUser('Error get logged user'));
+      return Left(ErrorGetLoggedUser('Erro ao pegar usuário logado'));
     } catch (e) {
-      return Left(ErrorGetLoggedUser('Error get logged user'));
+      return Left(ErrorGetLoggedUser('Error ao pegar usuário logado'));
     }
   }
 
@@ -67,7 +67,7 @@ class LoginRepositoryImpl implements LoginRepository {
           email: email, password: password, name: name, isMaua: isMaua);
       return const Right(unit);
     } catch (e) {
-      return Left(ErrorSignUpEmail('Error sign up with email'));
+      return Left(ErrorSignUpEmail('Error ao fazer cadastro'));
     }
   }
 
@@ -78,7 +78,7 @@ class LoginRepositoryImpl implements LoginRepository {
       await datasource.confirmSignUp(email: email, code: code);
       return const Right(unit);
     } catch (e) {
-      return Left(ErrorConfirmSignUp('Error confirm sign up'));
+      return Left(ErrorConfirmSignUp('Error ao confirmar cadastro'));
     }
   }
 
@@ -89,8 +89,8 @@ class LoginRepositoryImpl implements LoginRepository {
       await datasource.resendConfirmationCode(email: email);
       return const Right(unit);
     } catch (e) {
-      return Left(
-          ErrorResendConfirmationCode('Error resend confirmation code'));
+      return Left(ErrorResendConfirmationCode(
+          'Error ao reenviar código de confirmação'));
     }
   }
 
@@ -104,7 +104,7 @@ class LoginRepositoryImpl implements LoginRepository {
           email: email, code: code, newPassword: newPassword);
       return const Right(unit);
     } catch (e) {
-      return Left(ErrorConfirmResetPassword('Error confirm reset password'));
+      return Left(ErrorConfirmResetPassword('Error ao confirmar reset senha'));
     }
   }
 
@@ -114,7 +114,7 @@ class LoginRepositoryImpl implements LoginRepository {
       await datasource.resetPassword(email: email);
       return const Right(unit);
     } catch (e) {
-      return Left(ErrorResetPassword('Error reset password'));
+      return Left(ErrorResetPassword('Error ao resetar senha'));
     }
   }
 
@@ -124,11 +124,11 @@ class LoginRepositoryImpl implements LoginRepository {
     try {
       final res = await datasource.checkEmailExists(email: email);
       if (res) {
-        return Left(ErrorEmailExists('Email already exists'));
+        return Left(ErrorEmailExists('Email ja cadastrado'));
       }
       return Right(!res);
     } catch (e) {
-      return Left(ErrorEmailInvalid('Email invalid'));
+      return Left(ErrorEmailInvalid('Email invalido'));
     }
   }
 }

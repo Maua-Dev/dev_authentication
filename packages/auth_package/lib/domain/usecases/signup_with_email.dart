@@ -14,11 +14,11 @@ class SignupWithEmailImpl implements SignupWithEmail {
   @override
   Future<Either<Failure, Unit>> call(SignUpCredential credential) async {
     if (!credential.isValidEmail) {
-      return Left(ErrorLoginEmail('Invalid email'));
+      return Left(ErrorLoginEmail('Email Invalido. Verifique novamente.'));
     } else if (!credential.isValidPassword) {
-      return Left(ErrorLoginEmail('Invalid password'));
+      return Left(ErrorLoginEmail('Senha fraca. Tente novamente.'));
     } else if (!credential.isValidName) {
-      return Left(ErrorLoginEmail('Invalid name'));
+      return Left(ErrorLoginEmail('Nome invalido. Tente novamente.'));
     }
     return await _repository.signUpEmail(
         name: credential.name,

@@ -72,76 +72,91 @@ class _SignUpPageState extends State<SignUpPage> {
                     )
                   ],
                 ),
-                SignupFormWidget(
-                  labelButton: 'Next',
-                  buttonOnPressed: () async {
-                    if (_formKey.currentState!.validate() &&
-                        await store.checkLogin()) {
-                      store.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut);
-                    }
-                  },
-                  child: TextFieldCustom(
-                    onChanged: store.setEmail,
-                    text: 'Email',
-                    prefixIcon: const Icon(Icons.email_outlined),
-                    validator: (p0) => store.isMaua && !store.isEmailMaua
-                        ? 'Email must be @maua.br'
-                        : (!store.credential.isValidEmail
-                            ? 'Email is invalid'
-                            : null),
+                Center(
+                  child: SingleChildScrollView(
+                    child: SignupFormWidget(
+                      labelButton: 'Next',
+                      buttonOnPressed: () async {
+                        if (_formKey.currentState!.validate() &&
+                            await store.checkLogin()) {
+                          store.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut);
+                        }
+                      },
+                      child: TextFieldCustom(
+                        onChanged: store.setEmail,
+                        text: 'Email',
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        validator: (p0) => store.isMaua && !store.isEmailMaua
+                            ? 'Email must be @maua.br'
+                            : (!store.credential.isValidEmail
+                                ? 'Email is invalid'
+                                : null),
+                      ),
+                    ),
                   ),
                 ),
-                SignupFormWidget(
-                  labelButton: 'Next',
-                  buttonOnPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      store.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut);
-                    }
-                  },
-                  child: TextFieldCustom(
-                    onChanged: store.setName,
-                    text: 'Name',
-                    prefixIcon: const Icon(Icons.person_outline),
-                    validator: (p0) =>
-                        store.name.isEmpty ? 'Name is empty' : null,
+                Center(
+                  child: SingleChildScrollView(
+                    child: SignupFormWidget(
+                      labelButton: 'Next',
+                      buttonOnPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          store.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut);
+                        }
+                      },
+                      child: TextFieldCustom(
+                        onChanged: store.setName,
+                        text: 'Name',
+                        prefixIcon: const Icon(Icons.person_outline),
+                        validator: (p0) =>
+                            store.name.isEmpty ? 'Name is empty' : null,
+                      ),
+                    ),
                   ),
                 ),
-                SignupFormWidget(
-                    labelButton: 'Submit',
-                    buttonOnPressed: () {
-                      if (_formKey.currentState!.validate()) store.signUp();
-                    },
-                    child: Observer(builder: (context) {
-                      return Column(
-                        children: [
-                          TextFieldCustom(
-                            onChanged: store.setPassword,
-                            text: 'Password',
-                            prefixIcon: const Icon(Icons.lock_outline_rounded),
-                            obscureText: true,
-                            validator: (p0) => !store.credential.isValidPassword
-                                ? 'Password is invalid'
-                                : null,
-                          ),
-                          const SizedBox(height: 16),
-                          TextFieldCustom(
-                            onChanged: store.setConfirmPassword,
-                            text: 'Confirm Password',
-                            prefixIcon: const Icon(Icons.lock_outline_rounded),
-                            obscureText: true,
-                            validator: (p0) => !store.isPasswordEquals &&
-                                    store.password.isNotEmpty &&
-                                    store.confirmPassword.isNotEmpty
-                                ? 'Password and Confirm Password must be equals'
-                                : null,
-                          ),
-                        ],
-                      );
-                    })),
+                Center(
+                  child: SingleChildScrollView(
+                    child: SignupFormWidget(
+                        labelButton: 'Submit',
+                        buttonOnPressed: () {
+                          if (_formKey.currentState!.validate()) store.signUp();
+                        },
+                        child: Observer(builder: (context) {
+                          return Column(
+                            children: [
+                              TextFieldCustom(
+                                onChanged: store.setPassword,
+                                text: 'Password',
+                                prefixIcon:
+                                    const Icon(Icons.lock_outline_rounded),
+                                obscureText: true,
+                                validator: (p0) =>
+                                    !store.credential.isValidPassword
+                                        ? 'Password is invalid'
+                                        : null,
+                              ),
+                              const SizedBox(height: 16),
+                              TextFieldCustom(
+                                onChanged: store.setConfirmPassword,
+                                text: 'Confirm Password',
+                                prefixIcon:
+                                    const Icon(Icons.lock_outline_rounded),
+                                obscureText: true,
+                                validator: (p0) => !store.isPasswordEquals &&
+                                        store.password.isNotEmpty &&
+                                        store.confirmPassword.isNotEmpty
+                                    ? 'Password and Confirm Password must be equals'
+                                    : null,
+                              ),
+                            ],
+                          );
+                        })),
+                  ),
+                ),
               ],
             ),
           ),

@@ -25,7 +25,7 @@ abstract class HomeStoreBase with Store {
     checkParams();
     _authStore
         .checkLogin()
-        .then((value) => !value ? Modular.to.navigate('/login/') : null);
+        .then((value) => !value ? Modular.to.pushNamed('/login/') : null);
   }
 
   @observable
