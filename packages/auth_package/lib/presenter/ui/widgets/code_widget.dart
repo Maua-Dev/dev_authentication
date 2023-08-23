@@ -56,75 +56,94 @@ class _CodeWidgetState extends State<CodeWidget> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: List.generate(
-              6,
-              (index) => SizedBox(
-                    width: constraints.maxWidth / 7,
-                    height: constraints.maxWidth / 7 + 8,
-                    child: TextFormField(
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 24),
-                      textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
-                        hintText: '0',
-                      ),
-                      controller: _boxesControllers[index],
-                      focusNode: _boxesFocusNodes[index],
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [
-                        // LengthLimitingTextInputFormatter(1),
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      onTap: () {
-                        if (_code.isEmpty) {
-                          FocusScope.of(context)
-                              .requestFocus(_boxesFocusNodes[0]);
-                        } else {
-                          FocusScope.of(context)
-                              .requestFocus(_boxesFocusNodes[index]);
-                        }
-                      },
-                      onChanged: (value) {
-                        if (value.length == 2) {
-                          _boxesControllers[index].clear();
-                          _boxesControllers[index].text = value.split('').last;
-                        } else if (value.length > 2) {
-                          _boxesControllers[index].clear();
-                          value.split('').forEachIndexed((i, element) {
-                            _boxesControllers[i].text = element;
-                          });
-                        }
-
-                        setState(() {
-                          _code = _boxesControllers.fold(
-                              '',
-                              (previousValue, element) =>
-                                  previousValue + element.text);
-                        });
-                        if (widget.onChanged != null) widget.onChanged!(_code);
-                        if (value.isNotEmpty) {
-                          if (_code.length == 6) {
-                            if (widget.onSubmitted != null) {
-                              widget.onSubmitted!();
-                            }
-                          } else if (index < 5) {
+      return RawKeyboardListener(
+        focusNode: FocusNode(),
+        autofocus: true,
+        onKey: (value) {
+          if (value.logicalKey == LogicalKeyboardKey.backspace ||
+              value.physicalKey == PhysicalKeyboardKey.backspace) {
+            _boxesFocusNodes.forEachIndexed((index, element) {
+              if (element.hasFocus) {
+                if (_code.length == index && index > 0) {
+                  _boxesFocusNodes[index - 1].requestFocus();
+                }
+              }
+            });
+          }
+        },
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: List.generate(
+                6,
+                (index) => SizedBox(
+                      width: constraints.maxWidth / 7,
+                      height: constraints.maxWidth / 7 + 8,
+                      child: TextFormField(
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(
+                          hintText: '0',
+                        ),
+                        controller: _boxesControllers[index],
+                        focusNode: _boxesFocusNodes[index],
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          // LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        onTap: () {
+                          if (_code.isEmpty) {
                             FocusScope.of(context)
-                                .requestFocus(_boxesFocusNodes[index + 1]);
+                                .requestFocus(_boxesFocusNodes[0]);
                           } else {
-                            FocusScope.of(context).unfocus();
-                            if (widget.onSubmitted != null) {
-                              widget.onSubmitted!();
-                            }
+                            FocusScope.of(context)
+                                .requestFocus(_boxesFocusNodes[index]);
                           }
-                        } else {
-                          FocusScope.of(context).previousFocus();
-                        }
-                      },
-                    ),
-                  )));
+                        },
+                        onChanged: (value) {
+                          if (value.length == 2) {
+                            _boxesControllers[index].clear();
+                            _boxesControllers[index].text =
+                                value.split('').last;
+                          } else if (value.length > 2) {
+                            _boxesControllers[index].clear();
+                            value.split('').forEachIndexed((i, element) {
+                              _boxesControllers[i].text = element;
+                            });
+                          }
+
+                          setState(() {
+                            _code = _boxesControllers.fold(
+                                '',
+                                (previousValue, element) =>
+                                    previousValue + element.text);
+                          });
+                          if (widget.onChanged != null) {
+                            widget.onChanged!(_code);
+                          }
+                          if (value.isNotEmpty) {
+                            if (_code.length == 6) {
+                              if (widget.onSubmitted != null) {
+                                widget.onSubmitted!();
+                              }
+                            } else if (index < 5) {
+                              FocusScope.of(context)
+                                  .requestFocus(_boxesFocusNodes[index + 1]);
+                            } else {
+                              FocusScope.of(context).unfocus();
+                              if (widget.onSubmitted != null) {
+                                widget.onSubmitted!();
+                              }
+                            }
+                          } else {
+                            FocusScope.of(context).previousFocus();
+                          }
+                        },
+                      ),
+                    ))),
+      );
     });
   }
 }

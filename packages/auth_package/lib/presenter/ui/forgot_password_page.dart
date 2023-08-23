@@ -23,27 +23,33 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: BodyContainer(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Stack(
         children: [
-          SizedBox(
-            height: 200,
-            child: CachedNetworkImage(
-              imageUrl: 'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
-              fit: BoxFit.fill,
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 200,
+                child: CachedNetworkImage(
+                  imageUrl:
+                      'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextFieldCustom(
+                onChanged: store.setEmail,
+                onFieldSubmitted: (_) => store.resetPassword(),
+                text: 'Email',
+                prefixIcon: const Icon(Icons.email_outlined),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                  onPressed: store.resetPassword,
+                  child: const Text('Reset My Password'))
+            ],
           ),
-          const SizedBox(height: 16),
-          TextFieldCustom(
-            onChanged: store.setEmail,
-            onFieldSubmitted: (_) => store.resetPassword(),
-            text: 'Email',
-            prefixIcon: const Icon(Icons.email_outlined),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-              onPressed: store.resetPassword,
-              child: const Text('Reset My Password'))
+          BackButton(onPressed: () => Modular.to.pop())
         ],
       ),
     ));
