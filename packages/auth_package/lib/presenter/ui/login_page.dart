@@ -107,15 +107,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          if (Modular.to.navigateHistory.length > 1)
-            Positioned(
-              top: 0,
-              child: BackButton(
-                onPressed: () {
-                  Modular.to.pop();
-                },
-              ),
+          Positioned(
+            top: 0,
+            child: IconButton(
+              icon: const Icon(Icons.home_outlined),
+              onPressed: () {
+                Modular.to.navigate('/');
+              },
             ),
+          ),
         ],
       ),
     ));
