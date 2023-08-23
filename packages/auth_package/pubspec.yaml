@@ -1,6 +1,6 @@
 name: auth_package
 description: Flutter package Login to Dev Community
-version: 0.0.1
+version: 1.0.0
 publish_to: none
 
 environment:

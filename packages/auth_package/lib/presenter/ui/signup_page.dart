@@ -123,6 +123,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             text: 'Password',
                             prefixIcon: const Icon(Icons.lock_outline_rounded),
                             obscureText: true,
+                            validator: (p0) => !store.credential.isValidPassword
+                                ? 'Password is invalid'
+                                : null,
                           ),
                           const SizedBox(height: 16),
                           TextFieldCustom(
@@ -130,9 +133,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             text: 'Confirm Password',
                             prefixIcon: const Icon(Icons.lock_outline_rounded),
                             obscureText: true,
-                            validator: (p0) => store.isPasswordEquals
-                                ? null
-                                : 'Password and Confirm Password must be equals',
+                            validator: (p0) => !store.isPasswordEquals &&
+                                    store.password.isNotEmpty &&
+                                    store.confirmPassword.isNotEmpty
+                                ? 'Password and Confirm Password must be equals'
+                                : null,
                           ),
                         ],
                       );
