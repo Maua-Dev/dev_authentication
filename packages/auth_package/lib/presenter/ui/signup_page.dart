@@ -120,41 +120,54 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 Center(
                   child: SingleChildScrollView(
-                    child: SignupFormWidget(
-                        labelButton: 'Submit',
-                        buttonOnPressed: () {
-                          if (_formKey.currentState!.validate()) store.signUp();
-                        },
-                        child: Observer(builder: (context) {
-                          return Column(
-                            children: [
-                              TextFieldCustom(
-                                onChanged: store.setPassword,
-                                text: 'Password',
-                                prefixIcon:
-                                    const Icon(Icons.lock_outline_rounded),
-                                obscureText: true,
-                                validator: (p0) =>
-                                    !store.credential.isValidPassword
-                                        ? 'Password is invalid'
-                                        : null,
-                              ),
-                              const SizedBox(height: 16),
-                              TextFieldCustom(
-                                onChanged: store.setConfirmPassword,
-                                text: 'Confirm Password',
-                                prefixIcon:
-                                    const Icon(Icons.lock_outline_rounded),
-                                obscureText: true,
-                                validator: (p0) => !store.isPasswordEquals &&
-                                        store.password.isNotEmpty &&
-                                        store.confirmPassword.isNotEmpty
-                                    ? 'Password and Confirm Password must be equals'
-                                    : null,
-                              ),
-                            ],
-                          );
-                        })),
+                    child: Observer(builder: (context) {
+                      if (store.isLoading) {
+                        return const Column(
+                          children: [
+                            CircularProgressIndicator(),
+                            SizedBox(height: 16),
+                            Text('Sign Up...'),
+                          ],
+                        );
+                      }
+                      return SignupFormWidget(
+                          labelButton: 'Submit',
+                          buttonOnPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              store.signUp();
+                            }
+                          },
+                          child: Observer(builder: (context) {
+                            return Column(
+                              children: [
+                                TextFieldCustom(
+                                  onChanged: store.setPassword,
+                                  text: 'Password',
+                                  prefixIcon:
+                                      const Icon(Icons.lock_outline_rounded),
+                                  obscureText: true,
+                                  validator: (p0) =>
+                                      !store.credential.isValidPassword
+                                          ? 'Password is invalid'
+                                          : null,
+                                ),
+                                const SizedBox(height: 16),
+                                TextFieldCustom(
+                                  onChanged: store.setConfirmPassword,
+                                  text: 'Confirm Password',
+                                  prefixIcon:
+                                      const Icon(Icons.lock_outline_rounded),
+                                  obscureText: true,
+                                  validator: (p0) => !store.isPasswordEquals &&
+                                          store.password.isNotEmpty &&
+                                          store.confirmPassword.isNotEmpty
+                                      ? 'Password and Confirm Password must be equals'
+                                      : null,
+                                ),
+                              ],
+                            );
+                          }));
+                    }),
                   ),
                 ),
               ],
