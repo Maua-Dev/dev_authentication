@@ -24,79 +24,101 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: BodyContainer(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 200,
-            child: CachedNetworkImage(
-              imageUrl: 'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
-              fit: BoxFit.fill,
+      child: SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 200,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Observer(builder: (_) {
+                      if (store.isLoading) {
+                        return const Column(
+                          children: [
+                            CircularProgressIndicator(),
+                            SizedBox(height: 16),
+                            Text('Sign In...'),
+                          ],
+                        );
+                      }
+                      return Column(
+                        children: [
+                          TextFieldCustom(
+                            onChanged: store.setEmail,
+                            onFieldSubmitted: (value) async {
+                              store.password.isEmpty
+                                  ? FocusScope.of(context).nextFocus()
+                                  : await store.loginEmail();
+                            },
+                            text: 'Email',
+                            prefixIcon: const Icon(Icons.email_outlined),
+                          ),
+                          const SizedBox(height: 16),
+                          TextFieldCustom(
+                            onChanged: store.setPassword,
+                            onFieldSubmitted: (value) async {
+                              await store.loginEmail();
+                            },
+                            text: 'Password',
+                            obscureText: true,
+                            prefixIcon: const Icon(Icons.key_outlined),
+                          ),
+                          const SizedBox(height: 16),
+                          GestureDetector(
+                            onTap: () {
+                              Modular.to.pushNamed('./forgot-password');
+                            },
+                            child: const MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    'Forgot Password?',
+                                  )),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                              onPressed: () async {
+                                await store.loginEmail();
+                              },
+                              child: const Text('Login')),
+                          const SizedBox(height: 24),
+                          OutlinedButton(
+                              onPressed: () {
+                                Modular.to.pushNamed('./new');
+                              },
+                              child: const Text('Create Account'))
+                        ],
+                      );
+                    }),
+                  ],
+                ),
+              ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Observer(builder: (_) {
-            if (store.isLoading) {
-              return const Column(
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 16),
-                  Text('Sign In...'),
-                ],
-              );
-            }
-            return Column(
-              children: [
-                TextFieldCustom(
-                  onChanged: store.setEmail,
-                  onFieldSubmitted: (value) async {
-                    store.password.isEmpty
-                        ? FocusScope.of(context).nextFocus()
-                        : await store.loginEmail();
-                  },
-                  text: 'Email',
-                  prefixIcon: const Icon(Icons.email_outlined),
-                ),
-                const SizedBox(height: 16),
-                TextFieldCustom(
-                  onChanged: store.setPassword,
-                  onFieldSubmitted: (value) async {
-                    await store.loginEmail();
-                  },
-                  text: 'Password',
-                  obscureText: true,
-                  prefixIcon: const Icon(Icons.key_outlined),
-                ),
-                const SizedBox(height: 16),
-                GestureDetector(
-                  onTap: () {
-                    Modular.to.pushNamed('./forgot-password');
-                  },
-                  child: const MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          'Forgot Password?',
-                        )),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                    onPressed: () async {
-                      await store.loginEmail();
-                    },
-                    child: const Text('Login')),
-                const SizedBox(height: 24),
-                OutlinedButton(
-                    onPressed: () {
-                      Modular.to.pushNamed('./new');
-                    },
-                    child: const Text('Create Account'))
-              ],
-            );
-          }),
-        ],
+            Positioned(
+              top: 0,
+              child: IconButton(
+                icon: const Icon(Icons.home_outlined),
+                onPressed: () {
+                  Modular.to.navigate('/');
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     ));
   }

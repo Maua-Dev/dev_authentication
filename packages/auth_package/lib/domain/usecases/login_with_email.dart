@@ -16,9 +16,9 @@ class LoginWithEmailImpl implements LoginWithEmail {
   Future<Either<Failure, LoggedUserInfo>> call(
       LoginCredential credential) async {
     if (!credential.isValidEmail) {
-      return Left(ErrorLoginEmail('Invalid email'));
+      return Left(ErrorLoginEmail('Email Invalido. Verifique novamente.'));
     } else if (!credential.isValidPassword) {
-      return Left(ErrorLoginEmail('Invalid password'));
+      return Left(ErrorLoginEmail('Senha incorreta. Tente novamente.'));
     }
 
     return await _repository.loginEmail(
