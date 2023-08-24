@@ -6,6 +6,7 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red)
       .copyWith(secondary: Colors.blueAccent, brightness: Brightness.light),
   primaryColor: AppColors.primary,
+  scaffoldBackgroundColor: Colors.white,
   floatingActionButtonTheme:
       FloatingActionButtonThemeData(backgroundColor: AppColors.accent),
   outlinedButtonTheme: OutlinedButtonThemeData(

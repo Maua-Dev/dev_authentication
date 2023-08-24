@@ -16,7 +16,7 @@ class ConfirmSignupImpl implements ConfirmSignup {
   Future<Either<Failure, Unit>> call(
       {required String email, required String code}) async {
     if (email.isEmpty || code.isEmpty) {
-      return Left(ErrorConfirmSignUp('Code or email is invalid'));
+      return Left(ErrorConfirmSignUp('Codigo invalido. Verifique novamente.'));
     }
     return await _repository.confirmSignUp(email: email, code: code);
   }

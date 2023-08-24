@@ -12,7 +12,12 @@ class SignUpCredential {
       required this.name,
       required this.isMaua});
   bool get isValidEmail => validator.isEmail(email);
-  bool get isValidPassword => password.isNotEmpty && password.length > 7;
+  bool get isValidPassword =>
+      password.isNotEmpty &&
+      password.length > 7 &&
+      password.contains(RegExp(r'[A-Z]')) &&
+      password.contains(RegExp(r'[a-z]')) &&
+      password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
   bool get isValidName => name.isNotEmpty;
   factory SignUpCredential.withEmailAndPassword(
       {required String email,

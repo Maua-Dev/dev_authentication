@@ -19,7 +19,7 @@ class CognitoDatasource implements LoginDatasource {
       password: password,
     );
     if (result.nextStep.signInStep == AuthSignInStep.confirmSignUp) {
-      throw ErrorEmailNotVerified('Email not verified');
+      throw ErrorEmailNotVerified('Email não verificado');
     } else if (result.nextStep.signInStep == AuthSignInStep.resetPassword) {
       throw ErrorPasswordNotReset('Reset password');
     }
