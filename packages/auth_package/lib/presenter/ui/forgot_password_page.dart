@@ -54,7 +54,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 ),
               ),
             ),
-            BackButton(onPressed: () => Modular.to.pop())
+            BackButton(onPressed: Modular.to.pop)
           ],
         ),
       ),

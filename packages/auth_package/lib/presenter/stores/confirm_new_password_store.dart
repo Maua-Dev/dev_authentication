@@ -47,8 +47,9 @@ abstract class ConfirmNewPasswordStoreBase with Store {
 
   @action
   void setConfirmPassword(String value) => confirmPassword = value;
+
   @computed
-  NewPassword get newPasswordModel => NewPassword(
+  NewPassword get newPasswordModel => NewPassword.withCode(
       email: _email ?? '',
       code: code,
       newPassword: newPassword,
