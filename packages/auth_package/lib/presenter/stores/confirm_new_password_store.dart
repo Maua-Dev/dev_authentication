@@ -1,5 +1,6 @@
 import 'package:auth_package/domain/entities/new_password.dart';
 import 'package:auth_package/domain/usecases/confirm_new_password.dart';
+import 'package:auth_package/helpers/functions/toast_message.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:logger/logger.dart';
 import 'package:mobx/mobx.dart';
@@ -54,17 +55,18 @@ abstract class ConfirmNewPasswordStoreBase with Store {
       confirmPassword: confirmPassword);
 
   Future<void> confirmNewPassword() async {
-    try {
-      if (!newPasswordModel.isValid) {
-        return;
-      }
-      setLoading(true);
-      await _confirmNewPassword(newPasswordModel);
-      Modular.to.navigate('/login/');
-    } catch (e) {
-      logger.e(e);
-    } finally {
-      setLoading(false);
+    if (!newPasswordModel.isValid) {
+      await showToast('Codigo ou Senha inválidos');
+      return;
     }
+    setLoading(true);
+    final result = await _confirmNewPassword(newPasswordModel);
+    setLoading(false);
+    result.fold((l) async {
+      logger.e(l.message);
+      await showToast(l.message);
+    }, (r) {
+      Modular.to.navigate('/login/');
+    });
   }
 }

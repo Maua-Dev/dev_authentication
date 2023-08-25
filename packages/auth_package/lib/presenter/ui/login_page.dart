@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(height: 16),
                           GestureDetector(
                             onTap: () {
-                              Modular.to.pushNamed('./forgot-password');
+                              Modular.to.pushNamed('./forgot-password/');
                             },
                             child: const MouseRegion(
                               cursor: SystemMouseCursors.click,
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(height: 24),
                           OutlinedButton(
                               onPressed: () {
-                                Modular.to.pushNamed('./new');
+                                Modular.to.pushNamed('./new/');
                               },
                               child: const Text('Create Account'))
                         ],
