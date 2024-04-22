@@ -32,14 +32,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 200,
+                      height: 116,
                       child: CachedNetworkImage(
-                        imageUrl:
-                            'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+                        imageUrl: MediaQuery.of(context).platformBrightness ==
+                                Brightness.dark
+                            ? 'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png'
+                            : 'https://d3ebnpochj0915.cloudfront.net/logo_dev_black.png',
                         fit: BoxFit.fill,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 24),
                     TextFieldCustom(
                       onChanged: store.setEmail,
                       onFieldSubmitted: (_) => store.resetPassword(),

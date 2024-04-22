@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 ThemeData lightTheme = ThemeData(
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red)
-      .copyWith(secondary: Colors.blueAccent, brightness: Brightness.light),
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterial)
+      .copyWith(secondary: AppColors.accent, brightness: Brightness.light),
   primaryColor: AppColors.primary,
   scaffoldBackgroundColor: Colors.white,
   floatingActionButtonTheme:
@@ -39,9 +39,9 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-  scaffoldBackgroundColor: Colors.black,
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red)
-      .copyWith(secondary: Colors.blueAccent, brightness: Brightness.dark),
+  scaffoldBackgroundColor: AppColors.accent,
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterial)
+      .copyWith(secondary: AppColors.accent, brightness: Brightness.dark),
   switchTheme: SwitchThemeData(
     trackColor: MaterialStateProperty.all<Color>(AppColors.primary),
     thumbColor: MaterialStateProperty.all<Color>(Colors.white),
