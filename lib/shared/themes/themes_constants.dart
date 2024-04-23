@@ -3,79 +3,44 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 ThemeData lightTheme = ThemeData(
-  scaffoldBackgroundColor: AppColors.accent,
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterial)
-      .copyWith(secondary: AppColors.accent, brightness: Brightness.light),
-  primaryColor: AppColors.primary,
-  floatingActionButtonTheme:
-      FloatingActionButtonThemeData(backgroundColor: AppColors.accent),
-  outlinedButtonTheme: OutlinedButtonThemeData(
-    style: OutlinedButton.styleFrom(
-      backgroundColor: Colors.transparent,
-      minimumSize: const Size.fromHeight(50),
-      side: BorderSide(color: AppColors.primary),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: AppColors.primary)),
+    colorScheme:
+        ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterial)
+            .copyWith(secondary: AppColors.accent, brightness: Brightness.dark),
+    switchTheme: SwitchThemeData(
+      trackColor: MaterialStateProperty.all<Color>(AppColors.primary),
+      thumbColor: MaterialStateProperty.all<Color>(Colors.white),
     ),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primary,
-      foregroundColor: Colors.white,
-      minimumSize: const Size.fromHeight(50),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+    primaryColor: AppColors.primary,
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        minimumSize: const Size.fromHeight(50),
+        side: BorderSide(color: AppColors.primary),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: AppColors.primary)),
       ),
     ),
-  ),
-  inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-          borderSide: BorderSide.none),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: const TextStyle(color: Colors.black),
       filled: true,
-      fillColor: Colors.grey.withOpacity(0.1)),
-  iconTheme: IconThemeData(color: AppColors.primary),
-);
-
-ThemeData darkTheme = ThemeData(
-  scaffoldBackgroundColor: AppColors.accent,
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterial)
-      .copyWith(secondary: AppColors.accent, brightness: Brightness.dark),
-  switchTheme: SwitchThemeData(
-    trackColor: MaterialStateProperty.all<Color>(AppColors.primary),
-    thumbColor: MaterialStateProperty.all<Color>(Colors.white),
-  ),
-  primaryColor: AppColors.primary,
-  outlinedButtonTheme: OutlinedButtonThemeData(
-    style: OutlinedButton.styleFrom(
-      backgroundColor: Colors.transparent,
-      minimumSize: const Size.fromHeight(50),
-      side: BorderSide(color: AppColors.primary),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: AppColors.primary)),
-    ),
-  ),
-  inputDecorationTheme: InputDecorationTheme(
-    hintStyle: const TextStyle(color: Colors.grey),
-    filled: true,
-    fillColor: Colors.grey[900],
-    focusColor: Colors.grey[900],
-    border: OutlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(10),
-    ),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primary,
-      foregroundColor: Colors.white,
-      minimumSize: const Size.fromHeight(50),
-      shape: RoundedRectangleBorder(
+      fillColor: Colors.white,
+      prefixIconColor: AppColors.primary,
+      focusColor: Colors.white,
+      border: OutlineInputBorder(
+        borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(10),
       ),
     ),
-  ),
-  iconTheme: IconThemeData(color: AppColors.primary),
-);
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        minimumSize: const Size.fromHeight(50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    ),
+    iconTheme: IconThemeData(color: AppColors.primary),
+    scaffoldBackgroundColor: Colors.transparent);
