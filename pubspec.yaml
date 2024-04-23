@@ -2,7 +2,7 @@ name: dev_authentication
 description: Dev Authentication is a project web to others projects in dev community mauá to use.
 publish_to: 'none' 
 
-version: 1.6.8+94
+version: 1.6.8+95
 
 environment:
   sdk: '>=3.0.3 <4.0.0'
