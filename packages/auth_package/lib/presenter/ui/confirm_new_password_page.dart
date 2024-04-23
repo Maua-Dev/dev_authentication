@@ -36,7 +36,8 @@ class _ConfirmNewPasswordPageState extends State<ConfirmNewPasswordPage> {
                         SizedBox(
                           height: 100,
                           child: CachedNetworkImage(
-                            imageUrl: 'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png',
+                            imageUrl:
+                                'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png',
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -111,7 +112,10 @@ class _ConfirmNewPasswordPageState extends State<ConfirmNewPasswordPage> {
                   ),
                 ),
               ),
-              BackButton(onPressed: Modular.to.pop)
+              BackButton(
+                onPressed: Modular.to.pop,
+                color: Colors.white,
+              )
             ],
           ),
         ),

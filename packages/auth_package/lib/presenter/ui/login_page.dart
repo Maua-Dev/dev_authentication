@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
             Positioned(
               top: 0,
               child: IconButton(
-                icon: const Icon(Icons.home_outlined),
+                icon: const Icon(Icons.home_outlined, color: Colors.white),
                 onPressed: () {
                   Modular.to.navigate('/');
                 },

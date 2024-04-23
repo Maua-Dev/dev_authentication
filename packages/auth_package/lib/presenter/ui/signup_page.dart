@@ -174,6 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
           BackButton(
+            color: Colors.white,
             onPressed: () => store.getIndexPage == 0
                 ? (Modular.to.canPop()
                     ? Modular.to.pop()
