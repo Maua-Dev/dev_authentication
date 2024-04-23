@@ -207,10 +207,8 @@ class SignupFormWidget extends StatelessWidget {
         SizedBox(
           height: 116,
           child: CachedNetworkImage(
-            imageUrl: MediaQuery.of(context).platformBrightness ==
-                    Brightness.dark
-                ? 'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png'
-                : 'https://d3ebnpochj0915.cloudfront.net/logo_dev_black.png',
+            imageUrl:
+                'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png',
             fit: BoxFit.fill,
           ),
         ),

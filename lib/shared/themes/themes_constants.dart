@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 ThemeData lightTheme = ThemeData(
+  scaffoldBackgroundColor: AppColors.accent,
   colorScheme: ColorScheme.fromSwatch(primarySwatch: AppColors.primaryMaterial)
       .copyWith(secondary: AppColors.accent, brightness: Brightness.light),
   primaryColor: AppColors.primary,
-  scaffoldBackgroundColor: Colors.white,
   floatingActionButtonTheme:
       FloatingActionButtonThemeData(backgroundColor: AppColors.accent),
   outlinedButtonTheme: OutlinedButtonThemeData(

@@ -18,7 +18,6 @@ class _AppWidgetState extends State<AppWidget> {
       debugShowCheckedModeBanner: false,
       title: 'Dev Auth',
       themeMode: ThemeMode.system,
-      darkTheme: darkTheme,
       theme: lightTheme,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
