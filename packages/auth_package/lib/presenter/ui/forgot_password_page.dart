@@ -32,7 +32,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 116,
+                      height: 100,
                       child: CachedNetworkImage(
                         imageUrl:
                             'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png',
