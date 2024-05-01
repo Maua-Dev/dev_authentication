@@ -91,7 +91,7 @@ abstract class SignupStoreBase extends PageController with Store {
       logger.e(e.message);
       await showToast(e.message);
     }, (r) {
-      Modular.to.navigate('./confirm', arguments: credential.email);
+      Modular.to.navigate('../confirm', arguments: credential.email);
     });
   }
 

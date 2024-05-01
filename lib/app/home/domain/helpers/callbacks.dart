@@ -11,6 +11,6 @@ class Callbacks {
       return false;
     }
 
-    return _callbacksValids.contains(uri.host);
+    return _callbacksValids.any((domain) => uri.host.endsWith(domain));
   }
 }

@@ -174,6 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
           BackButton(
+            color: Colors.white,
             onPressed: () => store.getIndexPage == 0
                 ? (Modular.to.canPop()
                     ? Modular.to.pop()
@@ -205,13 +206,14 @@ class SignupFormWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          height: 200,
+          height: 100,
           child: CachedNetworkImage(
-            imageUrl: 'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+            imageUrl:
+                'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png',
             fit: BoxFit.fill,
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         child,
         const SizedBox(height: 16),
         ElevatedButton(onPressed: buttonOnPressed, child: Text(labelButton)),

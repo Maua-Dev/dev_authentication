@@ -22,13 +22,14 @@ class _ConfirmationCodePageState extends State<ConfirmationCodePage> {
       body: BodyContainer(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         SizedBox(
-          height: 200,
+          height: 100,
           child: CachedNetworkImage(
-            imageUrl: 'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+            imageUrl:
+                'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png',
             fit: BoxFit.fill,
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         Observer(builder: (_) {
           if (store.isLoading) {
             return const Column(
