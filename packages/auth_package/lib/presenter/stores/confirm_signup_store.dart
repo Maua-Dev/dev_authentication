@@ -64,6 +64,7 @@ abstract class ConfirmSignupStoreBase with Store {
       await showToast(e.message);
     }, (r) async {
       logger.i('Code resent');
+      startTimer();
       await showToast('Code resent');
     });
   }
@@ -73,6 +74,7 @@ abstract class ConfirmSignupStoreBase with Store {
   }
 
   startTimer() {
+    timer = 100;
     _timer = Timer.periodic(const Duration(seconds: 1), (t) {
       if (timer == 0) {
         stopTimer();

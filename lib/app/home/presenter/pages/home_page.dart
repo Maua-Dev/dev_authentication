@@ -29,14 +29,14 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
-                    height: 200,
+                    height: 100,
                     child: CachedNetworkImage(
                       imageUrl:
-                          'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
+                          'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png',
                       fit: BoxFit.fill,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   Observer(builder: (_) {
                     if (store.hasError) {
                       return Padding(

@@ -4,7 +4,7 @@ class NewPassword {
   final String newPassword;
   final String confirmPassword;
 
-  NewPassword(
+  NewPassword._(
       {required this.email,
       required this.code,
       required this.newPassword,
@@ -20,4 +20,16 @@ class NewPassword {
   bool get isValidConfirmPassword =>
       isValidNewPassword && confirmPassword == newPassword;
   bool get isValid => isValidCode && isValidConfirmPassword;
+
+  factory NewPassword.withCode(
+      {required String email,
+      required String code,
+      required String newPassword,
+      required String confirmPassword}) {
+    return NewPassword._(
+        email: email,
+        code: code,
+        newPassword: newPassword,
+        confirmPassword: confirmPassword);
+  }
 }

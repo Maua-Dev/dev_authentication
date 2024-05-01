@@ -14,8 +14,8 @@ class _LoggedPageState extends State<LoggedPage> {
     return Scaffold(
       body: Center(
         child: CachedNetworkImage(
-          imageUrl: 'https://d3ebnpochj0915.cloudfront.net/dev_logo.png',
-        ),
+            imageUrl:
+                'https://d3ebnpochj0915.cloudfront.net/logo_dev_white.png'),
       ),
     );
   }

@@ -6,5 +6,5 @@ Future<bool?> showToast(String message) {
       msg: message,
       backgroundColor: Colors.red,
       toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.SNACKBAR);
+      gravity: ToastGravity.TOP);
 }
