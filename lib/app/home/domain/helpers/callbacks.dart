@@ -2,7 +2,8 @@ class Callbacks {
   static final List<String> _callbacksValids = [
     'devmaua.com',
     'maua.br',
-    'localhost'
+    'localhost',
+    'github.com/maua-dev/'
   ];
   static bool verificaDominio(String url) {
     Uri? uri = Uri.tryParse(url);
