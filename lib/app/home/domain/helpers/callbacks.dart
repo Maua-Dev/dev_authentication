@@ -3,7 +3,7 @@ class Callbacks {
     'devmaua.com',
     'maua.br',
     'localhost',
-    'github.com/maua-dev/'
+    'google.com.br'
   ];
   static bool verificaDominio(String url) {
     Uri? uri = Uri.tryParse(url);
